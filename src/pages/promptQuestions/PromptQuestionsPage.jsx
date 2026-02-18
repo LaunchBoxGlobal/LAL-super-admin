@@ -4,11 +4,31 @@ import PromptQuestionsTable from "./PromptQuestionsTable";
 import AddNewPromptQuestionModal from "../../components/ui/AddNewPromptQuestionModal";
 import DeletePromptQuestionModal from "../../components/ui/DeletePromptQuestionModal";
 import EditPromptQuestionModal from "../../components/ui/EditPromptQuestionModal";
+import { useGetPromptsQuery } from "../../services/promptQuery";
+import PageLoader from "../../components/ui/PageLoader";
+import { useSearchParams } from "react-router-dom";
 
 const PromptQuestionsPage = () => {
   const [openAddNewQuestionModal, setOpenAddNewQuestionModal] = useState(false);
   const [openDeleteQuestionModal, setOpenDeleteQuestionModal] = useState(false);
   const [openEditPromptModal, setOpenEditPromptModal] = useState(false);
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || null;
+
+  const { data, isLoading, isError, error } = useGetPromptsQuery(
+    {
+      search: searchTerm,
+      page: 1,
+      limit: 10,
+      skip: 0,
+    },
+    {
+      refetchOnReconnect: true,
+    },
+  );
+
+  const prompts = data?.result?.data;
+  const pagination = data?.result?.pagination;
 
   const toggleAddNewQuestionModal = () =>
     setOpenAddNewQuestionModal((prev) => !prev);
@@ -34,10 +54,23 @@ const PromptQuestionsPage = () => {
         </div>
       </div>
 
-      <PromptQuestionsTable
-        toggleDeletePromptQuestionModal={toggleDeletePromptQuestionModal}
-        toggleEditPromptModal={toggleEditPromptModal}
-      />
+      {isLoading ? (
+        <PageLoader />
+      ) : (
+        <>
+          {prompts?.length > 0 ? (
+            <PromptQuestionsTable
+              toggleDeletePromptQuestionModal={toggleDeletePromptQuestionModal}
+              toggleEditPromptModal={toggleEditPromptModal}
+              prompts={prompts}
+            />
+          ) : (
+            <div className="w-full flex items-center justify-center min-h-[80vh] px-5 relative">
+              <h2 className="text-gray-500">No prompts have been added yet.</h2>
+            </div>
+          )}
+        </>
+      )}
 
       {openAddNewQuestionModal && (
         <AddNewPromptQuestionModal toggleModal={toggleAddNewQuestionModal} />

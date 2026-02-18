@@ -1,6 +1,51 @@
+import { useState } from "react";
+import { useAddPromptMutation } from "../../services/promptQuery";
+import { enqueueSnackbar } from "notistack";
+import ButtonLoader from "./ButtonLoader";
+
 const AddNewPromptQuestionModal = ({ toggleModal }) => {
-  const handleSubmit = (e) => {
+  const [promptQuestion, setPromptQuestion] = useState("");
+  const [error, setError] = useState("");
+  const [addPromptQuestion, { isLoading }] = useAddPromptMutation();
+
+  const validateField = (value) => {
+    let message = "";
+
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) {
+      message = "Prompt question is required.";
+    } else if (trimmedValue.length < 10) {
+      message = "Minimum 10 characters required.";
+    } else if (trimmedValue.length > 150) {
+      message = "Maximum 150 characters allowed.";
+    }
+
+    setError(message);
+    return !message;
+  };
+
+  const handleOnChange = (e) => {
+    const value = e.target.value;
+    setPromptQuestion(value);
+    validateField(value);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const isValid = validateField(promptQuestion);
+    if (!isValid) return;
+    const payload = {
+      question: promptQuestion,
+    };
+    const res = await addPromptQuestion(payload).unwrap();
+
+    enqueueSnackbar(res?.message || "Prompt has been saved successfully", {
+      variant: "success",
+    });
+
+    console.log("promptQuestion value:", promptQuestion);
+    setPromptQuestion("");
     toggleModal();
   };
   return (
@@ -33,9 +78,14 @@ const AddNewPromptQuestionModal = ({ toggleModal }) => {
             </label>
             <input
               type="text"
+              id="promptQuestion"
+              value={promptQuestion}
+              onChange={handleOnChange}
               placeholder="Enter prompt question"
               className="w-full h-[48px] rounded-[12px] px-4 text-sm text-[var(--secondary-text)] bg-white custom-shadow outline-none"
             />
+
+            {error && <small className="text-red-500 px-1">{error}</small>}
           </div>
 
           <div className="w-full relative z-10">
@@ -43,7 +93,7 @@ const AddNewPromptQuestionModal = ({ toggleModal }) => {
               type="submit"
               className="gradient-bg text-white font-medium rounded-[12px] w-full text-center h-[49px] relative z-10"
             >
-              Save
+              {isLoading ? <ButtonLoader /> : "Save"}
             </button>
           </div>
         </form>

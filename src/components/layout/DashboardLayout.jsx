@@ -1,10 +1,14 @@
 import { useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import Cookies from "js-cookie";
 
 const DashboardLayout = ({ pages }) => {
   const sidebarRef = useRef(null);
   const [isOpen, setisOpen] = useState(false);
+  const admin = Cookies.get("look_alike_admin")
+    ? JSON.parse(Cookies.get("look_alike_admin"))
+    : null;
 
   const toggleModal = () => {
     setisOpen(!isOpen);
@@ -41,7 +45,9 @@ const DashboardLayout = ({ pages }) => {
           </button>
 
           <div className="flex gap-3 items-center py-4 font-normal text-gray-900">
-            <p className="font-semibold text-gray-700 leading-tight">Admin</p>
+            <p className="font-semibold text-gray-700 leading-tight">
+              {admin ? admin?.fullName : "Admin"}
+            </p>
             <div className="h-[54px] min-w-[54px] max-w-[54px] rounded-full gradient-bg p-1">
               <img
                 class="h-full w-full rounded-full object-cover"

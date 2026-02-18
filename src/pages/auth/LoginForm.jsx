@@ -5,10 +5,13 @@ import Button from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../services/authApi";
 import Cookies from "js-cookie";
+import { setUser } from "../../features/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [data, setData] = useState({
     email: "",
@@ -60,9 +63,9 @@ const LoginForm = () => {
         role: "admin",
       };
       const res = await login(payload).unwrap();
-      console.log("login res >>> ", res);
       Cookies.set("look_alike_admin_token", res?.token);
-      Cookies.set("look_alike_admin", JSON.stringify(res));
+      Cookies.set("look_alike_admin", JSON.stringify(res?.user));
+      dispatch(setUser(res?.user));
       navigate("/");
     } catch (error) {
       console.log("login err >>> ", error);

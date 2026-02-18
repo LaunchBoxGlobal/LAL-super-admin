@@ -10,6 +10,7 @@ export const baseQuery = async (args, api, extraOptions) => {
     prepareHeaders: (headers) => {
       const token = getToken();
       if (token) headers.set("Authorization", `Bearer ${token}`);
+      headers.set("accept-language", "en");
       return headers;
     },
   });
@@ -39,7 +40,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong.",
           {
             variant: "error",
-          }
+          },
         );
         console.warn("fwefew");
         break;
@@ -51,7 +52,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "You do not have permission.",
           {
             variant: "error",
-          }
+          },
         );
         console.warn("Forbidden: You do not have permission.");
         break;
@@ -63,7 +64,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Oops! Resource not found!",
           {
             variant: "error",
-          }
+          },
         );
         console.warn("Resource not found.");
         break;
@@ -75,7 +76,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong!",
           {
             variant: "error",
-          }
+          },
         );
         console.error("Server error occurred.");
         break;
@@ -88,7 +89,7 @@ export const baseQuery = async (args, api, extraOptions) => {
             "Something went wrong!",
           {
             variant: "error",
-          }
+          },
         );
         console.error("Unhandled API error:", result.error);
         break;

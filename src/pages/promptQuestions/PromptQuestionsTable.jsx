@@ -3,6 +3,7 @@ import { HiMiniPencilSquare } from "react-icons/hi2";
 const PromptQuestionsTable = ({
   toggleDeletePromptQuestionModal,
   toggleEditPromptModal,
+  prompts,
 }) => {
   return (
     <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2">
@@ -26,7 +27,7 @@ const PromptQuestionsTable = ({
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]?.map((_, i) => {
+          {prompts?.map((prompt, i) => {
             return (
               <tr
                 key={i}
@@ -35,10 +36,10 @@ const PromptQuestionsTable = ({
                 <td className="px-6 py-4">1</td>
 
                 <td className="px-6 py-4 whitespace-nowrap">
-                  A Book That Changed My Perspective Is...
+                  {prompt?.question ? prompt?.question : "N/A"}
                 </td>
 
-                <td className="px-6 py-4 whitespace-nowrap text-end pr-9 space-x-2">
+                <td className="pl-6 py-4 whitespace-nowrap text-end pr-5 space-x-2">
                   <button type="button" onClick={toggleEditPromptModal}>
                     <HiMiniPencilSquare
                       size={21}

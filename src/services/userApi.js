@@ -12,7 +12,7 @@ export const userApi = createApi({
 
     // get all users
     getUsers: builder.query({
-      query: ({ search, page, limit, skip, status }) => {
+      query: ({ search, page, limit, skip, status, isVerified = true }) => {
         const params = new URLSearchParams();
 
         if (search) params.append(`search`, search);
@@ -20,6 +20,7 @@ export const userApi = createApi({
         if (limit) params.append("limit", limit);
         if (page) params.append("page", page);
         if (skip) params.append("skip", skip);
+        if (isVerified) params.append("isVerified", isVerified);
 
         return {
           url: `/user/all?${params.toString()}`,

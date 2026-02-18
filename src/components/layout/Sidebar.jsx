@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { SIDEBAR_LINKS } from "../../constants/sidebar";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const Sidebar = () => {
   };
 
   const handleLogout = async () => {
+    Cookies.remove("look_alike_admin_token");
+    Cookies.remove("look_alike_admin");
     navigate("/login");
   };
   return (

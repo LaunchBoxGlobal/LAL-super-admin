@@ -1,6 +1,7 @@
 import SearchField from "../../components/ui/SearchField";
 import { useGetUsersQuery } from "../../services/userApi";
 import UsersTable from "./UsersTable";
+import PageLoader from "../../components/ui/PageLoader";
 
 const UsersPage = () => {
   const { data, isLoading, isError, error } = useGetUsersQuery({
@@ -11,6 +12,7 @@ const UsersPage = () => {
   });
 
   console.log("all users >>> ", data);
+  const users = data?.data;
   return (
     <section className="w-full relative min-h-screen">
       <div className="w-full flex items-center justify-between gap-3 flex-wrap">
@@ -18,7 +20,7 @@ const UsersPage = () => {
         <SearchField />
       </div>
 
-      <UsersTable users={data} />
+      {isLoading ? <PageLoader /> : <UsersTable users={users} />}
     </section>
   );
 };
