@@ -3,6 +3,9 @@ import SearchField from "../../components/ui/SearchField";
 import SuspendedUserModal from "../../components/ui/SuspendedUserModal";
 import { useState } from "react";
 import SuspendUserConfirmationModal from "../../components/ui/SuspendUserConfirmationModal";
+import { useGetUsersQuery } from "../../services/userApi";
+import PageLoader from "../../components/ui/PageLoader";
+import EmptyDataPlaceholder from "../../components/ui/EmptyDataPlaceholder";
 
 const SuspendedUsers = () => {
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
@@ -13,6 +16,17 @@ const SuspendedUsers = () => {
   const toggleConfirmationModal = () =>
     setIsConfirmationModalOpen((prev) => !prev);
 
+  const { data, isLoading, isError, error, isFetching } = useGetUsersQuery({
+    page: 1,
+    search: "",
+    isVerified: true,
+    isSuspended: true,
+  });
+
+  const users = data?.result?.data;
+  const pagination = data?.result?.pagination;
+  const totalUsers = users?.length;
+
   return (
     <section className="w-full relative min-h-screen">
       <div className="w-full flex items-center justify-between gap-3 flex-wrap">
@@ -20,7 +34,13 @@ const SuspendedUsers = () => {
         <SearchField />
       </div>
 
-      <SuspendedUsersTable toggleUserModal={toggleUserModal} />
+      {isLoading ? (
+        <PageLoader />
+      ) : totalUsers > 0 ? (
+        <SuspendedUsersTable toggleUserModal={toggleUserModal} />
+      ) : (
+        <EmptyDataPlaceholder message={"No users found"} />
+      )}
 
       {isUserModalOpen && (
         <SuspendedUserModal

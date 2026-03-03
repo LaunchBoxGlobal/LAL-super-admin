@@ -50,7 +50,7 @@ const DashboardLayout = ({ pages }) => {
             </p>
             <div className="h-[54px] min-w-[54px] max-w-[54px] rounded-full gradient-bg p-1">
               <img
-                class="h-full w-full rounded-full object-cover"
+                className="h-full w-full rounded-full object-cover"
                 src={"/admin-photo.png"}
                 alt="admin-photo"
               />

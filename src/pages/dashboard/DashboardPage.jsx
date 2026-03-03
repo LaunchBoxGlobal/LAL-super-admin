@@ -1,22 +1,53 @@
+import { useGetStatsQuery } from "../../services/dashboardApi";
 import AgeAndGenderChart from "./AgeAndGenderChart";
+import ChartSkeleton from "./ChartSkeleton";
 import DashboardStats from "./DashboardStats";
 import OccupationUsageChart from "./OccupationUsageChart";
 import PopularCountriesChart from "./PopularCountriesChart";
+import StatsLoader from "./StatsLoader";
 
 const DashboardPage = () => {
+  const { data, isLoading, isError, error } = useGetStatsQuery(
+    {
+      occupationUseage: "annually",
+    },
+    {
+      refetchOnReconnect: true,
+      refetchOnMountOrArgChange: true,
+    },
+  );
+
   return (
     <section className="w-full min-h-screen relative bg-white">
       <p className="text-[#888888] font-medium">Hello Dave Gray</p>
       <h1 className="page-title">
         Welcome to <span className="">LookAlike</span>
       </h1>
-      <DashboardStats />
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-5 mt-7">
-        <PopularCountriesChart />
-        <OccupationUsageChart />
-        <AgeAndGenderChart />
-      </div>
+      {isLoading ? <StatsLoader /> : <DashboardStats stats={data?.result} />}
+
+      {/* <ChartSkeleton /> */}
+      {isLoading ? (
+        <div className="w-full flex flex-wrap items-start gap-5 mt-7">
+          <div className="w-full md:w-[47%] lg:w-[49%] space-y-5">
+            <ChartSkeleton />
+            <ChartSkeleton />
+          </div>
+          <div className="w-full md:w-[47%] lg:w-[49%]">
+            <ChartSkeleton />
+          </div>
+        </div>
+      ) : (
+        <div className="w-full flex flex-wrap items-start gap-5 mt-7">
+          <div className="w-full md:w-[47%] lg:w-[49%] space-y-5">
+            <PopularCountriesChart data={data?.result?.popularCountries} />
+            <AgeAndGenderChart data={data?.result?.ageAndGender} />
+          </div>
+          <div className="w-full md:w-[47%] lg:w-[49%]">
+            <OccupationUsageChart data={data?.result?.occupationUsage} />
+          </div>
+        </div>
+      )}
     </section>
   );
 };

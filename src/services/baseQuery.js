@@ -11,6 +11,7 @@ export const baseQuery = async (args, api, extraOptions) => {
       const token = getToken();
       if (token) headers.set("Authorization", `Bearer ${token}`);
       headers.set("accept-language", "en");
+      headers.set("ngrok-skip-browser-warning", true);
       return headers;
     },
   });

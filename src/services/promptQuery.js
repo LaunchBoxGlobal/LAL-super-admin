@@ -3,7 +3,8 @@ import { baseQuery } from "./baseQuery";
 
 export const promptApi = createApi({
   reducerPath: "promptApi",
-  baseQuery: baseQuery,
+  baseQuery,
+  tagTypes: ["Prompts"],
   endpoints: (builder) => ({
     // update user status
     addPrompt: builder.mutation({
@@ -12,6 +13,7 @@ export const promptApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: [{ type: "Prompts", id: "LIST" }],
     }),
 
     // get all prompts
@@ -30,6 +32,20 @@ export const promptApi = createApi({
           method: "GET",
         };
       },
+      providesTags: (result) =>
+        result?.result?.data
+          ? [
+              { type: "Prompts", id: "LIST" },
+              ...result.result.data.map((item) => ({
+                type: "Prompts",
+                id: item.id,
+              })),
+            ]
+          : [{ type: "Prompts", id: "LIST" }],
+      // 🏎 Cache optimizations
+      keepUnusedDataFor: 60, // seconds
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
     }),
 
     // update user status

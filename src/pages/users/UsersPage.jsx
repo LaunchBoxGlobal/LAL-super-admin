@@ -11,8 +11,8 @@ const UsersPage = () => {
     isSuspended: false,
   });
 
-  console.log("all users >>> ", data);
-  const users = data?.data;
+  const users = data?.result?.data;
+
   return (
     <section className="w-full relative min-h-screen">
       <div className="w-full flex items-center justify-between gap-3 flex-wrap">
