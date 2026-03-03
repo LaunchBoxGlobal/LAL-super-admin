@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGetStatsQuery } from "../../services/dashboardApi";
 import AgeAndGenderChart from "./AgeAndGenderChart";
 import ChartSkeleton from "./ChartSkeleton";
@@ -7,9 +8,11 @@ import PopularCountriesChart from "./PopularCountriesChart";
 import StatsLoader from "./StatsLoader";
 
 const DashboardPage = () => {
+  const [chartType, setChartType] = useState("annually");
+
   const { data, isLoading, isError, error } = useGetStatsQuery(
     {
-      occupationUseage: "annually",
+      occupationUseage: chartType,
     },
     {
       refetchOnReconnect: true,
@@ -44,7 +47,11 @@ const DashboardPage = () => {
             <AgeAndGenderChart data={data?.result?.ageAndGender} />
           </div>
           <div className="w-full md:w-[47%] lg:w-[49%]">
-            <OccupationUsageChart data={data?.result?.occupationUsage} />
+            <OccupationUsageChart
+              data={data?.result?.occupationUsage}
+              chartType={chartType}
+              setChartType={setChartType}
+            />
           </div>
         </div>
       )}

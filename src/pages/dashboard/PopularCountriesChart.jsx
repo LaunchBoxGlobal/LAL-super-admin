@@ -1,6 +1,6 @@
 import { POPULAR_COUNTRIES_STATS } from "../../constants/popularCountriesStats";
 
-const PopularCountriesChart = () => {
+const PopularCountriesChart = ({ data }) => {
   return (
     <div className="w-full bg-white rounded-[20px] custom-shadow">
       <div className="w-full px-5 pt-5">
@@ -15,7 +15,7 @@ const PopularCountriesChart = () => {
       <div className="w-full border my-5" />
 
       <div className="w-full px-5 pb-8 space-y-4">
-        {POPULAR_COUNTRIES_STATS?.map((c, i) => {
+        {data?.map((c) => {
           return (
             <div
               key={c?.country}
@@ -23,16 +23,16 @@ const PopularCountriesChart = () => {
             >
               <div className="min-w-[13%]">
                 <h4 className="text-sm font-medium leading-none">
-                  {c?.country}
+                  {c?.country === "United States" ? "US" : c?.country}
                 </h4>
               </div>
               <div className="w-full">
                 <div className="w-full h-[12px] rounded-[4px] bg-white">
                   <div
-                    className={`w-full h-[12px] rounded-[4px]`}
+                    className={`w-full h-[12px] rounded-[4px] bg-[#5E51C9]`}
                     style={{
                       width: `${c?.percentage}%`,
-                      background: c?.color,
+                      // background: c?.color,
                     }}
                   />
                 </div>

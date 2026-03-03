@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { OCCUPATION_USAGE_STATS } from "../../constants/occupationUsageStats";
 
-const OccupationUsageChart = () => {
-  const [chartType, setChartType] = useState("annually");
+const OccupationUsageChart = ({ data, chartType, setChartType }) => {
   return (
     <div className="w-full bg-white rounded-[20px] custom-shadow">
       <div className="w-full px-5 pt-5 flex items-center justify-between gap-3 flex-wrap">
@@ -43,29 +42,30 @@ const OccupationUsageChart = () => {
       <div className="w-full border my-5" />
 
       <div className="w-full px-5 pb-8 space-y-4">
-        {OCCUPATION_USAGE_STATS?.map((c, i) => {
+        {data?.map((c, i) => {
           return (
-            <div key={c?.country} className="w-full">
-              <div className="w-full flex items-center justify-between">
-                <h4 className="text-sm font-normal text-[#888888] leading-none">
-                  {c?.country}
-                </h4>
-                <p className="text-sm text-[#5E51C9] font-semibold">
-                  {c?.percentage}%
-                </p>
-              </div>
-              <div className="w-full mt-1">
-                <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5]">
-                  <div
-                    className={`w-full h-[16px] rounded-[4px]`}
-                    style={{
-                      width: `${c?.percentage}%`,
-                      background: c?.color,
-                    }}
-                  />
+            c?.percentage !== 0 && (
+              <div key={c?.country} className="w-full">
+                <div className="w-full flex items-center justify-between">
+                  <h4 className="text-sm font-normal text-[#888888] leading-none">
+                    {c?.occupation}
+                  </h4>
+                  <p className="text-sm text-[#5E51C9] font-semibold">
+                    {c?.percentage}%
+                  </p>
+                </div>
+                <div className="w-full mt-1">
+                  <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5]">
+                    <div
+                      className={`w-full h-[16px] rounded-[4px] ${i % 2 === 0 ? "bg-[#5E51C9]" : "bg-[#E0C6FD]"}`}
+                      style={{
+                        width: `${c?.percentage}%`,
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )
           );
         })}
       </div>

@@ -1,7 +1,7 @@
 import { GoDotFill } from "react-icons/go";
 import { AGE_GENDER_STATS } from "../../constants/ageGenderStats";
 
-const AgeAndGenderChart = (data) => {
+const AgeAndGenderChart = ({ data }) => {
   return (
     <div className="w-full bg-white rounded-[20px] custom-shadow relative z-[2000]">
       <div className="w-full px-5 pt-5">
@@ -30,7 +30,7 @@ const AgeAndGenderChart = (data) => {
       <div className="w-full border my-5" />
 
       <div className="w-full px-5 pb-8 space-y-4">
-        {AGE_GENDER_STATS?.map((c, i) => {
+        {data?.map((c, i) => {
           return (
             <div key={i} className="w-full">
               <div className="w-full flex items-center justify-between">
@@ -38,7 +38,7 @@ const AgeAndGenderChart = (data) => {
                   {c?.ageGroup}
                 </h4>
                 <p className="text-sm text-[#888888] font-semibold">
-                  {c?.totalPercentage}%
+                  {c?.percentage}%
                 </p>
               </div>
               <div className="w-full mt-1">

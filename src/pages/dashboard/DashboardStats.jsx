@@ -7,7 +7,9 @@ const DashboardStats = (stats) => {
           <h2 className="font-medium text-[var(--secondary-text)]">
             Total Users
           </h2>
-          <p className="text-[24px] font-semibold">{stats?.totalUser || 0}</p>
+          <p className="text-[24px] font-semibold">
+            {stats?.stats?.totalUsers || 0}
+          </p>
         </div>
         <img
           src="/total-users-icon.png"
@@ -24,7 +26,7 @@ const DashboardStats = (stats) => {
             Active Users
           </h2>
           <p className="text-[24px] font-semibold">
-            {stats?.totalActiveUsers || 0}
+            {stats?.stats?.totalActiveUsers || 0}
           </p>
         </div>
         <img
@@ -42,7 +44,7 @@ const DashboardStats = (stats) => {
             Total Matches
           </h2>
           <p className="text-[24px] font-semibold">
-            {stats?.totalMatches || 0}
+            {stats?.stats?.totalMatches || 0}
           </p>
         </div>
         <img
