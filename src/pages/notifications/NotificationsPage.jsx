@@ -3,6 +3,7 @@ import SearchField from "../../components/ui/SearchField";
 import SendNotificationModal from "../../components/ui/SendNotificationModal";
 import NotificationsTable from "./NotificationsTable";
 import DeleteNotificationConfirmationModal from "../../components/ui/DeleteNotificationConfirmationModal";
+import { useGetNotificationsQuery } from "../../services/notificationApi";
 
 const NotificationsPage = () => {
   const [openSendNotificationModal, setOpenSendNotificationModal] =
@@ -13,6 +14,16 @@ const NotificationsPage = () => {
   const toggleModal = () => setOpenSendNotificationModal((prev) => !prev);
   const toggleDeleteNotificationModal = () =>
     setOpenDeleteNotificationModal((prev) => !prev);
+
+  const { data, isLoading, isError } = useGetNotificationsQuery(undefined, {
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange: true,
+  });
+
+  const notifications = data?.result?.data;
+  const pagination = data?.result?.pagination;
+
+  console.log("notifications >>> ", notifications);
 
   return (
     <section className="w-full relative min-h-screen">
@@ -31,6 +42,7 @@ const NotificationsPage = () => {
       </div>
 
       <NotificationsTable
+        notifications={notifications}
         toggleDeleteNotificationModal={toggleDeleteNotificationModal}
       />
 

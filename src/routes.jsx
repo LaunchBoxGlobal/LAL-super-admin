@@ -7,16 +7,16 @@ import SuspendedUsers from "./pages/suspendedUsers/SuspendedUsers";
 import ReportsPage from "./pages/reports/ReportsPage";
 import NotificationsPage from "./pages/notifications/NotificationsPage";
 import PromptQuestionsPage from "./pages/promptQuestions/PromptQuestionsPage";
-import { getToken } from "./utils/getToken";
+import Cookies from "js-cookie";
 
 export const PrivateRoute = ({ children }) => {
-  const token = getToken();
+  const token = Cookies.get("look_alike_admin_token");
   if (!token) return <Navigate to={"/login"} replace />;
 
   return children;
 };
 export const PublicRoute = ({ children }) => {
-  const token = getToken();
+  const token = Cookies.get("look_alike_admin_token");
   if (token) return <Navigate to={"/"} replace />;
   return children;
 };

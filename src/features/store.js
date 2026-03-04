@@ -4,6 +4,7 @@ import { authApi } from "../services/authApi";
 import { userApi } from "../services/userApi";
 import { promptApi } from "../services/promptQuery";
 import { dashboardApi } from "../services/dashboardApi";
+import { notificationApi } from "../services/notificationApi";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [promptApi.reducerPath]: promptApi.reducer,
     [dashboardApi.reducerPath]: dashboardApi.reducer,
+    [notificationApi.reducerPath]: notificationApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -18,6 +20,7 @@ const store = configureStore({
       userApi.middleware,
       promptApi.middleware,
       dashboardApi.middleware,
+      notificationApi.middleware,
     ),
 });
 

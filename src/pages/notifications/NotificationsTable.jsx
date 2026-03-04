@@ -1,4 +1,9 @@
-const NotificationsTable = ({ toggleDeleteNotificationModal }) => {
+import { formatDate } from "../../utils/formatDate";
+
+const NotificationsTable = ({
+  toggleDeleteNotificationModal,
+  notifications,
+}) => {
   return (
     <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2">
       <table className="w-full text-sm text-left rtl:text-right text-body">
@@ -28,7 +33,7 @@ const NotificationsTable = ({ toggleDeleteNotificationModal }) => {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]?.map((_, i) => {
+          {notifications?.map((notification, i) => {
             return (
               <tr
                 key={i}
@@ -36,13 +41,12 @@ const NotificationsTable = ({ toggleDeleteNotificationModal }) => {
               >
                 <td className="px-6 py-4">1</td>
                 <th className="px-6 py-4 font-normal whitespace-nowrap">
-                  Notification Title
+                  {notification?.name}
                 </th>
-                <td className="px-6 py-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor...
+                <td className="px-6 py-4">{notification?.description}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {formatDate(notification?.createdAt)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">25 Jan, 2025</td>
                 <td className="px-6 py-4 whitespace-nowrap">08:00 AM</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
