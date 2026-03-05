@@ -42,11 +42,11 @@ const DashboardPage = () => {
         </div>
       ) : (
         <div className="w-full flex flex-wrap items-start gap-5 mt-7">
-          <div className="w-full md:w-[47%] lg:w-[49%] space-y-5">
+          <div className="w-full md:w-[47%] lg:w-[48%] space-y-5">
             <PopularCountriesChart data={data?.result?.popularCountries} />
             <AgeAndGenderChart data={data?.result?.ageAndGender} />
           </div>
-          <div className="w-full md:w-[47%] lg:w-[49%]">
+          <div className="w-full md:w-[47%] lg:w-[48%]">
             <OccupationUsageChart
               data={data?.result?.occupationUsage}
               chartType={chartType}

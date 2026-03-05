@@ -20,7 +20,9 @@ const SendNotificationModal = ({ toggleModal }) => {
         const payload = {
           title: values.title,
           description: values.description,
-          scheduledAt: new Date(`${values.date}T${values.time}`).toISOString(),
+          scheduledTime: new Date(
+            `${values.date}T${values.time}`,
+          ).toISOString(),
         };
 
         const res = await createAnnouncement(payload).unwrap();

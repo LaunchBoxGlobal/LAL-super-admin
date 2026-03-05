@@ -4,50 +4,87 @@ import SendNotificationModal from "../../components/ui/SendNotificationModal";
 import NotificationsTable from "./NotificationsTable";
 import DeleteNotificationConfirmationModal from "../../components/ui/DeleteNotificationConfirmationModal";
 import { useGetNotificationsQuery } from "../../services/notificationApi";
+import TableSkeleton from "../../components/ui/TableSkeleton";
+import EmptyDataPlaceholder from "../../components/ui/EmptyDataPlaceholder";
+import { useSearchParams } from "react-router-dom";
 
 const NotificationsPage = () => {
+  const [searchParams] = useSearchParams();
+  const searchTerm = searchParams.get("search") || "";
   const [openSendNotificationModal, setOpenSendNotificationModal] =
     useState(false);
   const [openDeleteNotificationModal, setOpenDeleteNotificationModal] =
     useState(false);
 
-  const toggleModal = () => setOpenSendNotificationModal((prev) => !prev);
+  const toggleSendModal = () => setOpenSendNotificationModal((prev) => !prev);
+
   const toggleDeleteNotificationModal = () =>
     setOpenDeleteNotificationModal((prev) => !prev);
 
-  const { data, isLoading, isError } = useGetNotificationsQuery(undefined, {
-    refetchOnReconnect: true,
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isLoading, isError, error, isFetching, refetch } =
+    useGetNotificationsQuery(undefined, {
+      refetchOnReconnect: true,
+      refetchOnMountOrArgChange: true,
+    });
 
-  const notifications = data?.result?.data;
+  const notifications = data?.result?.data || [];
   const pagination = data?.result?.pagination;
 
-  console.log("notifications >>> ", notifications);
+  if (isLoading) {
+    return (
+      <section className="w-full relative min-h-screen">
+        <Header toggleSendModal={toggleSendModal} />
+        <TableSkeleton />
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="w-full relative min-h-screen">
+        <Header toggleSendModal={toggleSendModal} />
+        <div className="w-full mt-10 border-radius p-4 pt-10 text-center">
+          <h3 className="text-gray-600 font-semibold text-lg">
+            Failed to load notifications
+          </h3>
+          <p className="text-sm text-gray-500 mt-2">
+            {error?.data?.message ||
+              "Something went wrong while fetching notifications."}
+          </p>
+
+          <button
+            onClick={refetch}
+            className="mt-5 px-5 py-2 gradient-bg text-white rounded-[10px] transition"
+          >
+            Retry
+          </button>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full relative min-h-screen">
-      <div className="w-full flex items-center justify-between gap-3 flex-wrap">
-        <h2 className="page-title">Notifications</h2>
-        <div className="w-full md:max-w-[50%] flex items-center gap-2 justify-end">
-          <SearchField />
-          <button
-            type="button"
-            onClick={toggleModal}
-            className="h-[41px] gradient-bg px-4 text-white text-base font-medium rounded-[8px]"
-          >
-            Send New Notification
-          </button>
-        </div>
-      </div>
+      <Header toggleSendModal={toggleSendModal} />
 
-      <NotificationsTable
-        notifications={notifications}
-        toggleDeleteNotificationModal={toggleDeleteNotificationModal}
-      />
+      {isFetching && (
+        <div className="text-xs text-gray-400 mt-2">
+          Updating notifications...
+        </div>
+      )}
+
+      {notifications.length === 0 ? (
+        <EmptyDataPlaceholder message="No notifications available" />
+      ) : (
+        <NotificationsTable
+          notifications={notifications}
+          pagination={pagination}
+          toggleDeleteNotificationModal={toggleDeleteNotificationModal}
+        />
+      )}
 
       {openSendNotificationModal && (
-        <SendNotificationModal toggleModal={toggleModal} />
+        <SendNotificationModal toggleModal={toggleSendModal} />
       )}
 
       {openDeleteNotificationModal && (
@@ -59,5 +96,22 @@ const NotificationsPage = () => {
     </section>
   );
 };
+
+const Header = ({ toggleSendModal }) => (
+  <div className="w-full flex items-start justify-between gap-3 gap-y-5 flex-wrap">
+    <h2 className="page-title">Notifications</h2>
+
+    <div className="w-full md:w-[60%] flex items-center gap-2 justify-end flex-wrap md:flex-nowrap gap-y-3">
+      <SearchField />
+      <button
+        type="button"
+        onClick={toggleSendModal}
+        className="h-[41px] gradient-bg px-4 text-white text-base font-medium rounded-[8px] whitespace-nowrap"
+      >
+        Send New Notification
+      </button>
+    </div>
+  </div>
+);
 
 export default NotificationsPage;

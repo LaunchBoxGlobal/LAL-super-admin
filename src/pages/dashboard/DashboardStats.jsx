@@ -2,7 +2,7 @@ const DashboardStats = (stats) => {
   return (
     <div className="w-full flex items-center gap-5 flex-wrap mt-5 relative z-40">
       {/* total users */}
-      <div className="w-full max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
+      <div className="w-full md:max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
         <div className="">
           <h2 className="font-medium text-[var(--secondary-text)]">
             Total Users
@@ -20,7 +20,7 @@ const DashboardStats = (stats) => {
       </div>
 
       {/* active users */}
-      <div className="w-full max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
+      <div className="w-full md:max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
         <div className="">
           <h2 className="font-medium text-[var(--secondary-text)]">
             Active Users
@@ -38,7 +38,7 @@ const DashboardStats = (stats) => {
       </div>
 
       {/* total matches */}
-      <div className="w-full max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
+      <div className="w-full md:max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
         <div className="">
           <h2 className="font-medium text-[var(--secondary-text)]">
             Total Matches

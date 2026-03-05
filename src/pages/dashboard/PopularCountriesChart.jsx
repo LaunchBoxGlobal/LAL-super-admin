@@ -1,5 +1,3 @@
-import { POPULAR_COUNTRIES_STATS } from "../../constants/popularCountriesStats";
-
 const PopularCountriesChart = ({ data }) => {
   return (
     <div className="w-full bg-white rounded-[20px] custom-shadow">
@@ -17,32 +15,33 @@ const PopularCountriesChart = ({ data }) => {
       <div className="w-full px-5 pb-8 space-y-4">
         {data?.map((c) => {
           return (
-            <div
-              key={c?.country}
-              className="w-full flex gap-3 items-center justify-between"
-            >
-              <div className="min-w-[13%]">
-                <h4 className="text-sm font-medium leading-none">
-                  {c?.country === "United States" ? "US" : c?.country}
-                </h4>
-              </div>
-              <div className="w-full">
-                <div className="w-full h-[12px] rounded-[4px] bg-white">
-                  <div
-                    className={`w-full h-[12px] rounded-[4px] bg-[#5E51C9]`}
-                    style={{
-                      width: `${c?.percentage}%`,
-                      // background: c?.color,
-                    }}
-                  />
+            c?.percentage > 0 && (
+              <div
+                key={c?.country}
+                className="w-full flex gap-3 items-center justify-between"
+              >
+                <div className="min-w-[13%]">
+                  <h4 className="text-sm font-medium leading-none">
+                    {c?.country === "United States" ? "US" : c?.country}
+                  </h4>
+                </div>
+                <div className="w-full">
+                  <div className="w-full h-[12px] rounded-[4px] bg-white">
+                    <div
+                      className={`w-full h-[12px] rounded-[4px] bg-[#5E51C9]`}
+                      style={{
+                        width: `${c?.percentage}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="min-w-[8%] text-center">
+                  <p className="text-sm text-[#5E51C9] font-semibold">
+                    {c?.percentage}%
+                  </p>
                 </div>
               </div>
-              <div className="min-w-[8%] text-center">
-                <p className="text-sm text-[#5E51C9] font-semibold">
-                  {c?.percentage}%
-                </p>
-              </div>
-            </div>
+            )
           );
         })}
       </div>

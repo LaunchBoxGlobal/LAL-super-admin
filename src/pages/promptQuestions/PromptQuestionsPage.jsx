@@ -5,29 +5,33 @@ import AddNewPromptQuestionModal from "../../components/ui/AddNewPromptQuestionM
 import DeletePromptQuestionModal from "../../components/ui/DeletePromptQuestionModal";
 import EditPromptQuestionModal from "../../components/ui/EditPromptQuestionModal";
 import { useGetPromptsQuery } from "../../services/promptQuery";
-import PageLoader from "../../components/ui/PageLoader";
 import { useSearchParams } from "react-router-dom";
+import TableSkeleton from "../../components/ui/TableSkeleton";
+import EmptyDataPlaceholder from "../../components/ui/EmptyDataPlaceholder";
 
 const PromptQuestionsPage = () => {
   const [openAddNewQuestionModal, setOpenAddNewQuestionModal] = useState(false);
   const [openDeleteQuestionModal, setOpenDeleteQuestionModal] = useState(false);
   const [openEditPromptModal, setOpenEditPromptModal] = useState(false);
+
   const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get("search") || null;
+  const searchTerm = searchParams.get("search") || "";
 
-  const { data, isLoading, isError, error } = useGetPromptsQuery(
-    {
-      search: searchTerm,
-      page: 1,
-      limit: 10,
-      skip: 0,
-    },
-    {
-      refetchOnReconnect: true,
-    },
-  );
+  const { data, isLoading, isError, error, isFetching, refetch } =
+    useGetPromptsQuery(
+      {
+        search: searchTerm,
+        page: 1,
+        limit: 10,
+        skip: 0,
+      },
+      {
+        refetchOnReconnect: true,
+        refetchOnMountOrArgChange: true,
+      },
+    );
 
-  const prompts = data?.result?.data;
+  const prompts = data?.result?.data || [];
   const pagination = data?.result?.pagination;
 
   const toggleAddNewQuestionModal = () =>
@@ -38,40 +42,68 @@ const PromptQuestionsPage = () => {
 
   const toggleEditPromptModal = () => setOpenEditPromptModal((prev) => !prev);
 
-  return (
-    <section className="w-full relative min-h-screen">
-      <div className="w-full flex items-center justify-between gap-3 flex-wrap">
-        <h2 className="page-title">Prompt Questions</h2>
-        <div className="w-full md:max-w-[50%] flex items-center gap-2 justify-end flex-wrap">
-          <SearchField />
+  if (isLoading) {
+    return (
+      <section className="w-full relative min-h-screen">
+        <Header toggleAddNewQuestionModal={toggleAddNewQuestionModal} />
+        <TableSkeleton />
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className="w-full relative min-h-screen">
+        <Header toggleAddNewQuestionModal={toggleAddNewQuestionModal} />
+
+        <div className="w-full mt-10 bg-red-50 border border-red-200 rounded-[16px] p-8 text-center">
+          <h3 className="text-red-600 font-semibold text-lg">
+            Failed to load prompt questions
+          </h3>
+
+          <p className="text-sm text-red-500 mt-2">
+            {error?.data?.message ||
+              "Something went wrong while fetching prompts."}
+          </p>
+
           <button
-            type="button"
-            onClick={toggleAddNewQuestionModal}
-            className="h-[41px] gradient-bg px-4 text-white text-base font-medium rounded-[8px]"
+            onClick={refetch}
+            className="mt-5 px-5 py-2 bg-red-600 text-white rounded-[8px] hover:bg-red-700 transition"
           >
-            Add New
+            Retry
           </button>
         </div>
-      </div>
+      </section>
+    );
+  }
 
-      {isLoading ? (
-        <PageLoader />
-      ) : (
-        <>
-          {prompts?.length > 0 ? (
-            <PromptQuestionsTable
-              toggleDeletePromptQuestionModal={toggleDeletePromptQuestionModal}
-              toggleEditPromptModal={toggleEditPromptModal}
-              prompts={prompts}
-            />
-          ) : (
-            <div className="w-full flex items-center justify-center min-h-[80vh] px-5 relative">
-              <h2 className="text-gray-500">No prompts have been added yet.</h2>
-            </div>
-          )}
-        </>
+  return (
+    <section className="w-full relative min-h-screen">
+      <Header toggleAddNewQuestionModal={toggleAddNewQuestionModal} />
+
+      {/* Background refetch indicator */}
+      {isFetching && (
+        <div className="text-xs text-gray-400 mt-2">Updating prompts...</div>
       )}
 
+      {prompts.length === 0 ? (
+        <EmptyDataPlaceholder
+          message={
+            searchTerm
+              ? "No prompts match your search."
+              : "No prompts have been added yet."
+          }
+        />
+      ) : (
+        <PromptQuestionsTable
+          prompts={prompts}
+          pagination={pagination}
+          toggleDeletePromptQuestionModal={toggleDeletePromptQuestionModal}
+          toggleEditPromptModal={toggleEditPromptModal}
+        />
+      )}
+
+      {/* Modals */}
       {openAddNewQuestionModal && (
         <AddNewPromptQuestionModal toggleModal={toggleAddNewQuestionModal} />
       )}
@@ -91,5 +123,22 @@ const PromptQuestionsPage = () => {
     </section>
   );
 };
+
+const Header = ({ toggleAddNewQuestionModal }) => (
+  <div className="w-full flex items-center justify-between gap-3 flex-wrap">
+    <h2 className="page-title">Prompt Questions</h2>
+
+    <div className="w-full md:max-w-[50%] flex items-center gap-2 justify-end flex-wrap">
+      <SearchField />
+      <button
+        type="button"
+        onClick={toggleAddNewQuestionModal}
+        className="h-[41px] gradient-bg px-4 text-white text-base font-medium rounded-[8px]"
+      >
+        Add New
+      </button>
+    </div>
+  </div>
+);
 
 export default PromptQuestionsPage;

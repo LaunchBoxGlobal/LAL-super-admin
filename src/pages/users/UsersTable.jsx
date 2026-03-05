@@ -1,11 +1,4 @@
 const UsersTable = ({ users }) => {
-  if (users?.length === 0) {
-    return (
-      <div className="w-full min-h-[80vh] px-4 flex flex-col items-center justify-center gap-4">
-        <p className="text-sm text-[(--secondary-text)]">No users found</p>
-      </div>
-    );
-  }
   return (
     <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2 min-h-screen">
       <table className="w-full text-sm text-left rtl:text-right text-body">
