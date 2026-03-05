@@ -1,5 +1,5 @@
 import { SnackbarProvider } from "notistack";
-import AppRoutes from "./routes";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (

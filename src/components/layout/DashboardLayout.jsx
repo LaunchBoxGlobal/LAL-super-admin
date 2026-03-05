@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Sidebar from "./Sidebar";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import Cookies from "js-cookie";
+import { Outlet } from "react-router-dom";
 
 const DashboardLayout = ({ pages }) => {
   const sidebarRef = useRef(null);
@@ -58,7 +59,7 @@ const DashboardLayout = ({ pages }) => {
           </div>
         </div>
         <div className="w-full bg-white rounded-[16px] lg:rounded-[32px] p-6 mt-6 text-black custom-shadow z-20 relative">
-          {pages}
+          <Outlet />
         </div>
       </div>
     </div>
