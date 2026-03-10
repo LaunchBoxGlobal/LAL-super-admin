@@ -18,6 +18,8 @@ export const baseQuery = async (args, api, extraOptions) => {
 
   const result = await rawBaseQuery(args, api, extraOptions);
 
+  console.log("result >>> ", result);
+
   if (result?.error) {
     const status = result.error?.status;
 
@@ -35,8 +37,7 @@ export const baseQuery = async (args, api, extraOptions) => {
 
       case 400:
         enqueueSnackbar(
-          result?.error?.data?.errors[0]?.message ||
-            result?.error?.data?.error ||
+          result?.error?.data?.error ||
             result?.error?.data?.message ||
             "Something went wrong.",
           {

@@ -4,6 +4,7 @@ const PromptQuestionsTable = ({
   toggleDeletePromptQuestionModal,
   toggleEditPromptModal,
   prompts,
+  setPromptId,
 }) => {
   return (
     <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2 min-h-screen">
@@ -40,7 +41,11 @@ const PromptQuestionsTable = ({
                 </td>
 
                 <td className="pl-6 py-4 whitespace-nowrap text-end pr-5 space-x-2">
-                  <button type="button" onClick={toggleEditPromptModal}>
+                  <button
+                    type="button"
+                    onClick={() => toggleEditPromptModal(prompt)}
+                    className="outline-none"
+                  >
                     <HiMiniPencilSquare
                       size={21}
                       className="text-[var(--secondary-text)]"
@@ -48,7 +53,11 @@ const PromptQuestionsTable = ({
                   </button>
                   <button
                     type="button"
-                    onClick={toggleDeletePromptQuestionModal}
+                    onClick={() => {
+                      setPromptId(prompt?.id);
+                      toggleDeletePromptQuestionModal();
+                    }}
+                    className="outline-none"
                   >
                     <img
                       src="/trash-icon.svg"

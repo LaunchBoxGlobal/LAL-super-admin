@@ -49,22 +49,35 @@ export const promptApi = createApi({
     }),
 
     // update user status
-    // updatePrompt: builder.mutation({
-    //   query: ({ userId, status }) => ({
-    //     url: `/users/approveUserProfile/${userId}`,
-    //     method: "PUT",
-    //     body: { status },
-    //   }),
-    // }),
+    updatePrompt: builder.mutation({
+      query: (data) => ({
+        url: `/admin/prompt`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: "Prompts", id: arg.id },
+        { type: "Prompts", id: "LIST" },
+      ],
+    }),
 
     // delete user
-    // deletePrompt: builder.mutation({
-    //   query: ({ userId }) => ({
-    //     url: `/users/${userId}`,
-    //     method: "DELETE",
-    //   }),
-    // }),
+    deletePrompt: builder.mutation({
+      query: ({ promptId }) => ({
+        url: `/admin/prompt/${promptId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: (result, error, { promptId }) => [
+        { type: "Prompts", id: promptId },
+        { type: "Prompts", id: "LIST" },
+      ],
+    }),
   }),
 });
 
-export const { useAddPromptMutation, useGetPromptsQuery } = promptApi;
+export const {
+  useAddPromptMutation,
+  useGetPromptsQuery,
+  useDeletePromptMutation,
+  useUpdatePromptMutation,
+} = promptApi;
