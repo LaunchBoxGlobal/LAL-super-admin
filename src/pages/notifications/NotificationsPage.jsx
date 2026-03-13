@@ -3,32 +3,55 @@ import SearchField from "../../components/ui/SearchField";
 import SendNotificationModal from "../../components/ui/SendNotificationModal";
 import NotificationsTable from "./NotificationsTable";
 import DeleteNotificationConfirmationModal from "../../components/ui/DeleteNotificationConfirmationModal";
-import { useGetNotificationsQuery } from "../../services/notificationApi";
+import {
+  useDeleteNotificationMutation,
+  useGetNotificationsQuery,
+} from "../../services/notificationApi";
 import TableSkeleton from "../../components/ui/TableSkeleton";
 import EmptyDataPlaceholder from "../../components/ui/EmptyDataPlaceholder";
+import { enqueueSnackbar } from "notistack";
 import { useSearchParams } from "react-router-dom";
 
 const NotificationsPage = () => {
   const [searchParams] = useSearchParams();
-  const searchTerm = searchParams.get("search") || "";
+  const search = searchParams.get("search") || "";
   const [openSendNotificationModal, setOpenSendNotificationModal] =
     useState(false);
   const [openDeleteNotificationModal, setOpenDeleteNotificationModal] =
     useState(false);
+  const [announcementId, setAnnouncementId] = useState(null);
 
   const toggleSendModal = () => setOpenSendNotificationModal((prev) => !prev);
 
-  const toggleDeleteNotificationModal = () =>
-    setOpenDeleteNotificationModal((prev) => !prev);
-
   const { data, isLoading, isError, error, isFetching, refetch } =
-    useGetNotificationsQuery(undefined, {
-      refetchOnReconnect: true,
-      refetchOnMountOrArgChange: true,
-    });
+    useGetNotificationsQuery(
+      {
+        search,
+        page: 1,
+        limit: 10,
+      },
+      {
+        refetchOnReconnect: true,
+        refetchOnMountOrArgChange: true,
+      },
+    );
 
   const notifications = data?.result?.data || [];
   const pagination = data?.result?.pagination;
+
+  const [deleteNotification, { isLoading: isDeleting }] =
+    useDeleteNotificationMutation();
+
+  const handleDeleteNotification = async () => {
+    if (!announcementId || announcementId === undefined) return;
+    try {
+      await deleteNotification(announcementId).unwrap();
+      enqueueSnackbar("Announcement has been deleted successfully", {
+        variant: "success",
+      });
+      setOpenDeleteNotificationModal(false);
+    } catch (error) {}
+  };
 
   if (isLoading) {
     return (
@@ -79,7 +102,8 @@ const NotificationsPage = () => {
         <NotificationsTable
           notifications={notifications}
           pagination={pagination}
-          toggleDeleteNotificationModal={toggleDeleteNotificationModal}
+          setOpenDeleteNotificationModal={setOpenDeleteNotificationModal}
+          setAnnouncementId={setAnnouncementId}
         />
       )}
 
@@ -89,8 +113,8 @@ const NotificationsPage = () => {
 
       {openDeleteNotificationModal && (
         <DeleteNotificationConfirmationModal
-          onClick={toggleDeleteNotificationModal}
-          onClose={toggleDeleteNotificationModal}
+          onClick={handleDeleteNotification}
+          onClose={() => setOpenDeleteNotificationModal((prev) => !prev)}
         />
       )}
     </section>

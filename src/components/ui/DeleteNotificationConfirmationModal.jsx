@@ -28,7 +28,7 @@ const DeleteNotificationConfirmationModal = ({ onClose, onClick }) => {
           </button>
           <button
             type="button"
-            onClick={onClick}
+            onClick={() => onClick()}
             className="gradient-bg text-white w-full h-[44px] rounded-[12px] text-center font-semibold text-sm"
           >
             Yes

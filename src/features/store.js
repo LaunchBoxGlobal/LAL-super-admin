@@ -5,6 +5,7 @@ import { userApi } from "../services/userApi";
 import { promptApi } from "../services/promptQuery";
 import { dashboardApi } from "../services/dashboardApi";
 import { notificationApi } from "../services/notificationApi";
+import { reportApi } from "../services/reportApi";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     [promptApi.reducerPath]: promptApi.reducer,
     [dashboardApi.reducerPath]: dashboardApi.reducer,
     [notificationApi.reducerPath]: notificationApi.reducer,
+    [reportApi.reducerPath]: reportApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -21,6 +23,7 @@ const store = configureStore({
       promptApi.middleware,
       dashboardApi.middleware,
       notificationApi.middleware,
+      reportApi.middleware,
     ),
 });
 

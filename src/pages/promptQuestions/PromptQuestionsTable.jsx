@@ -12,13 +12,8 @@ const PromptQuestionsTable = ({
         <thead className="text-sm text-body rounded-base bg-[#408EE8]/20 rounded-[12px] lg:rounded-[24px]">
           <tr>
             <th scope="col" className="px-6 py-4 font-medium rounded-l-[16px]">
-              #
-            </th>
-
-            <th scope="col" className="px-6 py-4 font-medium">
               Prompt Question
             </th>
-
             <th
               scope="col"
               className="px-6 py-4 font-medium text-end rounded-r-[16px]"
@@ -34,8 +29,6 @@ const PromptQuestionsTable = ({
                 key={i}
                 className="bg-neutral-primary border-b border-default"
               >
-                <td className="px-6 py-4">1</td>
-
                 <td className="px-6 py-4 whitespace-nowrap">
                   {prompt?.question ? prompt?.question : "N/A"}
                 </td>

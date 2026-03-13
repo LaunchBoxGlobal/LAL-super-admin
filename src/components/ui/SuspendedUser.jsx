@@ -1,20 +1,18 @@
 import { formatDate } from "../../utils/formatDate";
 import { FaCircleUser } from "react-icons/fa6";
 
-const SuspendedUserModal = ({
+const SuspendedUser = ({
   toggleUserModal,
   toggleConfirmationModal,
-  title,
-  buttonText,
-  report,
   setReport,
+  suspendedUser,
 }) => {
   return (
     <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-50 bg-[rgba(0,0,0,0.3)] px-4">
       <div className="w-full max-w-[471px] p-6 lg:p-6 rounded-[32px] relative overflow-hidden bg-white">
         <div className="w-full flex items-center justify-between gap-3 z-10 relative">
           <h2 className="text-[18px] lg:text-[24px] font-semibold leading-none">
-            {title}
+            Suspended User
           </h2>
 
           <button
@@ -40,9 +38,9 @@ const SuspendedUserModal = ({
             <p className="">Reporter</p>
 
             <div className="flex items-center gap-2 mt-2 pb-1">
-              {report?.reporter?.image ? (
+              {suspendedUser?.report?.reporter?.image ? (
                 <img
-                  src={report?.reporter?.image}
+                  src={suspendedUser?.report?.reporter?.image}
                   alt="user-profile-image"
                   width={35}
                   height={35}
@@ -56,7 +54,7 @@ const SuspendedUserModal = ({
               )}
 
               <span className="text-sm font-semibold">
-                {report?.reporter?.fullName}
+                {suspendedUser?.report?.reporter?.fullName}
               </span>
             </div>
           </div>
@@ -65,7 +63,7 @@ const SuspendedUserModal = ({
 
             <div className="flex items-center gap-2 mt-5">
               <span className="text-sm font-semibold">
-                {formatDate(report?.reportedAt)}
+                {formatDate(suspendedUser?.report?.reportedAt)}
               </span>
             </div>
           </div>
@@ -77,7 +75,9 @@ const SuspendedUserModal = ({
           <h4 className="text-sm font-semibold">Description</h4>
 
           <div className="w-full bg-white rounded-[16px] p-4 mt-2 max-h-[200px] overflow-y-auto">
-            <p className="text-sm leading-[1.4]">{report?.reason}</p>
+            <p className="text-sm leading-[1.4]">
+              {suspendedUser?.report?.reason}
+            </p>
           </div>
         </div>
 
@@ -88,9 +88,9 @@ const SuspendedUserModal = ({
             <p className="">Reported User</p>
 
             <div className="flex items-center gap-2 mt-2">
-              {report?.reported?.image ? (
+              {suspendedUser?.report?.reported?.image ? (
                 <img
-                  src={report?.reported?.image}
+                  src={suspendedUser?.report?.reported?.image}
                   alt="user-profile-image"
                   width={35}
                   height={35}
@@ -103,7 +103,7 @@ const SuspendedUserModal = ({
                 />
               )}
               <span className="text-sm font-semibold">
-                {report?.reported?.fullName}
+                {suspendedUser?.report?.reported?.fullName}
               </span>
             </div>
           </div>
@@ -116,7 +116,7 @@ const SuspendedUserModal = ({
               }}
               className="gradient-bg w-[169px] h-[49px] text-white rounded-[12px] text-sm font-medium"
             >
-              {buttonText}
+              Unsuspend User
             </button>
           </div>
         </div>
@@ -136,4 +136,4 @@ const SuspendedUserModal = ({
   );
 };
 
-export default SuspendedUserModal;
+export default SuspendedUser;

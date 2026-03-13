@@ -24,7 +24,7 @@ const SearchField = () => {
   }, [value]);
 
   return (
-    <div className="w-full md:max-w-[252px] h-[41px] bg-white custom-shadow flex items-center justify-between gap-2 px-4 rounded-[12px]">
+    <div className="w-full md:max-w-[252px] h-[44px] bg-white custom-shadow flex items-center justify-between gap-2 px-4 rounded-[12px]">
       <img src="/search-icon.png" alt="search icon" width={14} height={14} />
       <input
         type="text"

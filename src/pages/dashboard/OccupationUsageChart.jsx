@@ -48,7 +48,8 @@ const OccupationUsageChart = ({ data, chartType, setChartType }) => {
               <div key={c?.country} className="w-full">
                 <div className="w-full flex items-center justify-between">
                   <h4 className="text-sm font-normal text-[#888888] leading-none">
-                    {c?.occupation}
+                    {c?.occupation.charAt(0).toUpperCase() +
+                      c?.occupation?.slice(1)}
                   </h4>
                   <p className="text-sm text-[#5E51C9] font-semibold">
                     {c?.percentage}%

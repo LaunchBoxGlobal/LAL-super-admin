@@ -4,6 +4,8 @@ import { baseQuery } from "./baseQuery";
 export const notificationApi = createApi({
   reducerPath: "notificationApi",
   baseQuery: baseQuery,
+  tagTypes: ["Notifications"],
+
   endpoints: (builder) => ({
     // post new notification
     createNotification: builder.mutation({
@@ -12,33 +14,32 @@ export const notificationApi = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Notifications"],
     }),
 
-    // get all users
+    // get all notifications
     getNotifications: builder.query({
-      //   query: ({ search, page, limit, skip, status }) => {
-      query: () => {
-        // const params = new URLSearchParams();
+      query: ({ search, page, limit }) => {
+        const params = new URLSearchParams();
 
-        // if (search) params.append(`search`, search);
-        // if (status) params.append("status", status);
-        // if (limit) params.append("limit", limit);
-        // if (page) params.append("page", page);
-        // if (skip) params.append("skip", skip);
+        if (search) params.append("search", search);
+        if (page) params.append("page", page);
+        if (limit) params.append("limit", limit);
 
         return {
-          //   url: `/admin/announcement/all?${params.toString()}`,
-          url: `/admin/announcement/all`,
+          url: `/admin/announcement/all?${params.toString()}`,
         };
       },
+      providesTags: ["Notifications"],
     }),
 
-    // delete user
+    // delete notification
     deleteNotification: builder.mutation({
-      query: ({ notificationId }) => ({
+      query: (notificationId) => ({
         url: `/admin/announcement/${notificationId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Notifications"],
     }),
   }),
 });

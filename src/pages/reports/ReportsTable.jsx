@@ -1,16 +1,13 @@
-const ReportsTable = ({ toggleUserModal }) => {
+import { formatDate } from "../../utils/formatDate";
+import { FaCircleUser } from "react-icons/fa6";
+
+const ReportsTable = ({ toggleUserModal, reports, setReport }) => {
   return (
-    <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2">
+    <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2 min-h-screen">
       <table className="w-full text-sm text-left rtl:text-right text-body">
         <thead className="text-sm text-body rounded-base bg-[#408EE8]/20 rounded-[12px] lg:rounded-[24px]">
           <tr>
             <th scope="col" className="px-6 py-4 font-medium rounded-l-[16px]">
-              #
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium">
-              Report ID
-            </th>
-            <th scope="col" className="px-6 py-4 font-medium">
               Reporter
             </th>
             <th scope="col" className="px-6 py-4 font-medium">
@@ -28,46 +25,56 @@ const ReportsTable = ({ toggleUserModal }) => {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]?.map((_, i) => {
+          {reports?.map((report, i) => {
             return (
               <tr
                 key={i}
                 className="bg-neutral-primary border-b border-default"
               >
-                <td className="px-6 py-4">1</td>
-                <td className="px-6 py-4">AD098765</td>
                 <td className="px-6 py-4 font-normal whitespace-nowrap flex items-center gap-2">
-                  <img
-                    src="/user-profile-image.png"
-                    alt="user-profile-image"
-                    width={43}
-                    height={43}
-                    className="min-w-[43px] rounded-full object-cover"
-                  />
-                  Charlotte
-                </td>
-
-                <td className="px-6 py-4 font-normal whitespace-nowrap ">
-                  <div className="flex items-center gap-2">
+                  {report?.reporter?.image ? (
                     <img
-                      src="/user-profile-image.png"
+                      src={report?.reporter?.image}
                       alt="user-profile-image"
                       width={43}
                       height={43}
-                      className="min-w-[43px] rounded-full object-cover"
+                      className="w-[43px] max-w-[43px] h-[43px] rounded-full object-cover"
                     />
-                    <span className="">Charlotte</span>
+                  ) : (
+                    <FaCircleUser size={41} className="text-gray-700" />
+                  )}
+                  {report?.reporter?.fullName}
+                </td>
+
+                <td className="px-6 py-4 font-normal whitespace-nowrap">
+                  <div className="flex items-center gap-2">
+                    {report?.reported?.image ? (
+                      <img
+                        src={report?.reported?.image}
+                        alt="user-profile-image"
+                        width={43}
+                        height={43}
+                        className="w-[43px] max-w-[43px] h-[43px] rounded-full object-cover"
+                      />
+                    ) : (
+                      <FaCircleUser size={41} className="text-gray-600" />
+                    )}
+
+                    <span className="">{report?.reported?.fullName}</span>
                   </div>
                 </td>
 
-                <td className="px-6 py-4">
-                  Lorem ipsumlabore et dolore magna aliqua...
+                <td className="px-6 py-4">{report?.reason}</td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {formatDate(report?.reportedAt)}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">20 Sep, 2025</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button
                     type="button"
-                    onClick={toggleUserModal}
+                    onClick={() => {
+                      toggleUserModal();
+                      setReport(report);
+                    }}
                     className="gradient-text font-medium underline decoration-[#408EE8] text-sm"
                   >
                     View Details

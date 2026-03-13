@@ -7,12 +7,16 @@ import { useGetUsersQuery } from "../../services/userApi";
 import EmptyDataPlaceholder from "../../components/ui/EmptyDataPlaceholder";
 import TableSkeleton from "../../components/ui/TableSkeleton";
 import { useSearchParams } from "react-router-dom";
+import { useUnsuspendUserMutation } from "../../services/reportApi";
+import { enqueueSnackbar } from "notistack";
+import SuspendedUser from "../../components/ui/SuspendedUser";
 
 const SuspendedUsers = () => {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("search") || "";
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [suspendedUser, setSuspendedUser] = useState(null);
 
   const toggleUserModal = () => setIsUserModalOpen((prev) => !prev);
   const toggleConfirmationModal = () =>
@@ -34,6 +38,20 @@ const SuspendedUsers = () => {
   const users = data?.result?.data || [];
   const pagination = data?.result?.pagination;
 
+  const [unsuspend, { isLoading: isUnsuspending }] = useUnsuspendUserMutation();
+
+  const handleUnsuspendUser = async () => {
+    if (!suspendedUser) return;
+    try {
+      await unsuspend(suspendedUser?.userId).unwrap();
+      enqueueSnackbar("User has been unsuspended successfully", {
+        variant: "success",
+      });
+      toggleConfirmationModal();
+      setSuspendedUser(null);
+    } catch (error) {}
+  };
+
   if (isLoading) {
     return (
       <section className="w-full relative min-h-screen">
@@ -47,18 +65,18 @@ const SuspendedUsers = () => {
     return (
       <section className="w-full relative min-h-screen">
         <Header />
-        <div className="w-full mt-10 bg-red-50 border border-red-200 rounded-[16px] p-8 text-center">
-          <h3 className="text-red-600 font-semibold text-lg">
+        <div className="w-full mt-10 p-8 text-center">
+          <h3 className="text-gray-600 font-semibold text-lg">
             Failed to load suspended users
           </h3>
-          <p className="text-sm text-red-500 mt-2">
+          <p className="text-sm text-gray-500 mt-2">
             {error?.data?.message ||
               "Something went wrong while fetching data."}
           </p>
 
           <button
             onClick={refetch}
-            className="mt-5 px-5 py-2 bg-red-600 text-white rounded-[8px] hover:bg-red-700 transition"
+            className="mt-5 px-5 py-2 gradient-bg text-white rounded-[8px]"
           >
             Retry
           </button>
@@ -83,15 +101,16 @@ const SuspendedUsers = () => {
           users={users}
           pagination={pagination}
           toggleUserModal={toggleUserModal}
+          setSuspendedUser={setSuspendedUser}
         />
       )}
 
       {isUserModalOpen && (
-        <SuspendedUserModal
+        <SuspendedUser
           toggleUserModal={toggleUserModal}
           toggleConfirmationModal={toggleConfirmationModal}
-          title="Suspended User"
-          buttonText="Unsuspend Account"
+          suspendedUser={suspendedUser}
+          setReport={setSuspendedUser}
         />
       )}
 
@@ -100,7 +119,7 @@ const SuspendedUsers = () => {
           title="Unsuspend User"
           description="Are you sure you want to unsuspend this user?"
           onClose={toggleConfirmationModal}
-          onClick={toggleConfirmationModal}
+          onClick={handleUnsuspendUser}
         />
       )}
     </section>
