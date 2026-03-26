@@ -53,7 +53,7 @@ const HowItWorks = () => {
               How It Works
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Your journey to love starts here
+              Your journey to find a match starts here
             </h3>
             <p className="text-lg text-gray-600 mb-10">
               We've made finding your perfect match as simple and intuitive as

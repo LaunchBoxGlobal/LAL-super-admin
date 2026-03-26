@@ -42,14 +42,14 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-gray-50">
+    <section id="features" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Everything you need to{" "}
-            <span className="gradient-text">find love</span>
+            <span className="gradient-text">find a match</span>
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-600 lg:max-w-[500px] text-center mx-auto">
             We've built the most comprehensive set of features to make your
             dating journey safe, fun, and successful.
           </p>

@@ -27,7 +27,7 @@ const CTA = () => {
             Ready to find your match?
           </h2>
           <p className="text-xl text-indigo-100 mb-10 max-w-2xl mx-auto">
-            Join our community today and start meeting amazing people near you.
+            Download the app today and start meeting amazing people near you.
             Create your account for free.
           </p>
 
@@ -37,7 +37,7 @@ const CTA = () => {
               className="bg-white text-[#5E51C9] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-colors shadow-xl flex items-center justify-center gap-2"
             >
               {/* <Apple className="w-5 h-5" /> */}
-              Contact Us
+              Contact Support
             </Link>
             {/* <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
               <Play className="w-5 h-5" />

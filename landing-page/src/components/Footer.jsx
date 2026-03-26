@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
 
           <div className="col-span-1 md:col-span-1 lg:pl-10">
-            <h4 className="text-white font-bold mb-4">Company</h4>
+            <h4 className="text-white font-bold mb-4">Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <button
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
 
           <div className="col-span-1 md:col-span-1">
-            <h4 className="text-white font-bold mb-4">Legal</h4>
+            <h4 className="text-white font-bold mb-4">Policies</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link

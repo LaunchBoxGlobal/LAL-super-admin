@@ -40,6 +40,9 @@
 @layer base {
   body {
     @apply bg-white text-slate-900;
+    background-image: url("/gradient-background.png");
+    background-size: cover;
+    background-position: center;
   }
 }
 
