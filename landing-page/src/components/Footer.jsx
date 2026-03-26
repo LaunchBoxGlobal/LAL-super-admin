@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import {
-  Heart,
-  MessageCircle,
-  Shield,
-  Sliders,
-  UserPlus,
-  Star,
-  Menu,
-  X,
-  Apple,
-  Play,
-  CheckCircle2,
-  Lock,
-  Zap,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollTo = (id) => {
+    if (location.pathname === "/") {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/", { state: { scrollTo: id } });
+    }
+  };
+
   return (
     <footer
       id="contact"
@@ -40,19 +37,31 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="hover:text-white transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollTo("home")}
+                  className="hover:text-white transition-colors"
+                >
                   Home
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-white transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollTo("features")}
+                  className="hover:text-white transition-colors"
+                >
                   Features
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/" className="hover:text-white transition-colors">
+                <button
+                  type="button"
+                  onClick={() => scrollTo("how-it-works")}
+                  className="hover:text-white transition-colors"
+                >
                   How It Works
-                </Link>
+                </button>
               </li>
               <li>
                 <Link
@@ -86,27 +95,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* <div>
-            <h4 className="text-white font-bold mb-4">Support</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Safety Guidelines
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition-colors">
-                  Contact Support
-                </a>
-              </li>
-            </ul>
-          </div> */}
         </div>
 
         <div className="pt-8 border-t border-gray-800 text-center">

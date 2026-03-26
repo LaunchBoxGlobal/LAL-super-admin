@@ -62,7 +62,7 @@ const Hero = () => {
                 <span>Google Play</span>
               </button>
             </div>
-            <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
+            {/* <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-500">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <img
@@ -77,7 +77,7 @@ const Hero = () => {
                 Over <span className="font-bold text-gray-900">2M+</span> happy
                 users
               </p>
-            </div>
+            </div> */}
           </motion.div>
 
           <motion.div

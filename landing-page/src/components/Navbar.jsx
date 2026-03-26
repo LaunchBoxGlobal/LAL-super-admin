@@ -15,11 +15,13 @@ import {
   Lock,
   Zap,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +32,14 @@ const Navbar = () => {
   }, []);
 
   const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname === "/") {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/", { state: { scrollTo: id } });
     }
-    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -51,14 +56,14 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          <Link
-            to={"/"}
-            // onClick={() => scrollTo("home")}
+        <nav className="hidden md:flex items-center gap-14">
+          <button
+            type="button"
+            onClick={() => scrollTo("home")}
             className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
           >
             Home
-          </Link>
+          </button>
           <button
             onClick={() => scrollTo("features")}
             className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
@@ -73,21 +78,20 @@ const Navbar = () => {
           </button>
           <Link
             to={"/contact"}
-            // onClick={() => scrollTo("contact")}
             className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
           >
             Contact Support
           </Link>
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        {/* <div className="hidden md:flex items-center gap-4">
           <button
             onClick={() => scrollTo("download")}
             className="gradient-bg text-white px-6 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity shadow-lg shadow-indigo-200"
           >
             Download App
           </button>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Toggle */}
         <button
@@ -113,6 +117,7 @@ const Navbar = () => {
           >
             <div className="px-4 pt-2 pb-6 space-y-1 flex flex-col">
               <button
+                type="button"
                 onClick={() => scrollTo("home")}
                 className="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 rounded-md text-left"
               >
@@ -130,18 +135,19 @@ const Navbar = () => {
               >
                 How it Works
               </button>
-              <button
-                onClick={() => scrollTo("contact")}
+              <Link
+                to={"/contact"}
+                // onClick={() => scrollTo("contact")}
                 className="block px-3 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 rounded-md text-left"
               >
                 Contact Support
-              </button>
-              <button
+              </Link>
+              {/* <button
                 onClick={() => scrollTo("download")}
                 className="mt-4 w-full gradient-bg text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-opacity text-center"
               >
                 Download App
-              </button>
+              </button> */}
             </div>
           </motion.div>
         )}

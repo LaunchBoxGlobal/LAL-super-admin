@@ -1,27 +1,12 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import {
-  Heart,
-  MessageCircle,
-  Shield,
-  Sliders,
-  UserPlus,
-  Star,
-  Menu,
-  X,
-  Apple,
-  Play,
-  CheckCircle2,
-  Lock,
-  Zap,
-} from "lucide-react";
+import { motion } from "motion/react";
+import { Apple, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const CTA = () => {
   return (
     <section id="download" className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 gradient-bg"></div>
 
-      {/* Decorative background patterns */}
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -47,14 +32,17 @@ const CTA = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-white text-[#5E51C9] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-colors shadow-xl flex items-center justify-center gap-2">
-              <Apple className="w-5 h-5" />
-              App Store
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
+            <Link
+              to={"/contact"}
+              className="bg-white text-[#5E51C9] px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-50 transition-colors shadow-xl flex items-center justify-center gap-2"
+            >
+              {/* <Apple className="w-5 h-5" /> */}
+              Contact Us
+            </Link>
+            {/* <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-colors flex items-center justify-center gap-2">
               <Play className="w-5 h-5" />
               Google Play
-            </button>
+            </button> */}
           </div>
 
           <p className="mt-6 text-sm text-indigo-200">
