@@ -1,0 +1,36 @@
+@import url("./assets/fonts.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "General Sans", sans-serif;
+}
+
+:root {
+  --secondary-text: #565656;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-r from-[#5E51C9] to-[#408EE8];
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-[#5E51C9] to-[#408EE8] bg-clip-text text-transparent;
+}
+
+.gradient-border {
+  @apply bg-gradient-to-r from-[#5E51C9] to-[#408EE8];
+}
+
+.custom-shadow {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.page-title {
+  @apply text-[24px] mt-1 lg:text-[32px] font-semibold leading-none;
+}
