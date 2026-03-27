@@ -30,7 +30,7 @@ const Hero = () => {
                 <Apple className="w-5 h-5" />
                 <span>App Store</span>
               </button>
-              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-100 text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-200 transition-colors">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors">
                 <Play className="w-5 h-5" />
                 <span>Google Play</span>
               </button>

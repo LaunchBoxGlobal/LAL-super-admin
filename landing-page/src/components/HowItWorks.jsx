@@ -71,12 +71,12 @@ const HowItWorks = () => {
             </div>
           </div>
 
-          <div className="relative rounded-3xl">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-full">
+            <div className="w-full">
               <img
-                src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                alt="Couple laughing"
-                className="w-full h-full object-cover"
+                src="/girl-standing-for-photoshoot.png"
+                alt="girl-standing-for-photoshoot"
+                className="w-full max-w-[90%] mx-auto h-full object-cover"
               />
             </div>
 
