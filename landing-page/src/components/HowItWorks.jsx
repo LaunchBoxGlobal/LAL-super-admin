@@ -40,7 +40,7 @@ const HowItWorks = () => {
       number: "04",
       title: "Start chatting",
       description:
-        "Break the ice with our built-in conversation starters and plan your first date.",
+        "Break the ice with our built-in conversation starters and plan your first hangout.",
     },
   ];
 
@@ -106,8 +106,8 @@ const HowItWorks = () => {
                 <span className="font-bold text-gray-900">5.0</span>
               </div>
               <p className="text-sm text-gray-600 italic">
-                "Met my fiancé on Spark within a week of downloading. Best
-                decision ever!"
+                "Met my fiancé on LookAlike Match within a week of downloading.
+                Best decision ever!"
               </p>
               <p className="text-xs font-bold text-gray-900 mt-2">
                 — Jessica M.

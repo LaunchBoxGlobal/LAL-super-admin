@@ -64,8 +64,8 @@ export default function ContactForm() {
           We'd love to hear from you
         </h1>
         <p className="text-lg text-gray-500 max-w-[500px] mx-auto text-center leading-[1.3] font-normal">
-          Have a question about Spark? Want to report a bug or suggest a
-          feature? Drop us a message below.
+          Have a question about LookAlike Match? Want to report a bug or suggest
+          a feature? Drop us a message below.
         </p>
       </motion.div>
 

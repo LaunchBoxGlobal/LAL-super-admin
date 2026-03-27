@@ -37,7 +37,7 @@ const Features = () => {
       icon: <Star className="w-6 h-6 text-white" />,
       title: "Premium Perks",
       description:
-        "See who likes you, send super likes, and undo accidental left swipes with Spark Premium.",
+        "See who likes you, send super likes, and undo accidental left swipes with LookAlike Match Premium.",
     },
   ];
 
@@ -51,7 +51,7 @@ const Features = () => {
           </h2>
           <p className="text-lg text-gray-600 lg:max-w-[500px] text-center mx-auto">
             We've built the most comprehensive set of features to make your
-            dating journey safe, fun, and successful.
+            friendship journey safe, fun, and successful.
           </p>
         </div>
 
