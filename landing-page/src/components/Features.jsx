@@ -5,39 +5,39 @@ const Features = () => {
   const features = [
     {
       icon: <Zap className="w-6 h-6 text-white" />,
-      title: "Smart Matching",
+      title: "Smart LookAlike Matching",
       description:
-        "Our advanced AI algorithm finds profiles that truly align with your interests, values, and lifestyle.",
+        "Our facial recognition engine analyzes your photos and suggests visually similar users with a percentage match score.",
     },
     {
       icon: <Lock className="w-6 h-6 text-white" />,
       title: "Privacy Control",
       description:
-        "You're in charge. Control who sees your profile, hide your age, or browse in incognito mode.",
+        "Live photo verification ensures that every user is real, reducing fake accounts and improving trust.",
     },
     {
       icon: <Shield className="w-6 h-6 text-white" />,
       title: "Secure Chat",
       description:
-        "End-to-end encrypted messaging ensures your conversations stay private and secure.",
+        "Only matched users can chat. Conversations remain private and protected with secure messaging.",
     },
     {
       icon: <Sliders className="w-6 h-6 text-white" />,
-      title: "Profile Personalization",
+      title: "Detailed Profile Personalization",
       description:
-        "Express your true self with prompts, voice notes, and rich media galleries.",
+        "Showcase your personality through prompts, interests, lifestyle preferences, and curated profile details.",
     },
     {
       icon: <UserPlus className="w-6 h-6 text-white" />,
-      title: "Easy Signup",
+      title: "Guided Onboarding",
       description:
-        "Get started in seconds. Quick verification keeps our community safe and authentic.",
+        "Multi-step onboarding collects meaningful data to improve compatibility and lookalike detection.",
     },
     {
       icon: <Star className="w-6 h-6 text-white" />,
-      title: "Premium Perks",
+      title: "Premium LookAlike Insights",
       description:
-        "See who likes you, send super likes, and undo accidental left swipes with LookAlike Match Premium.",
+        "Unlock advanced similarity results, unlimited swipes, and full chat access with premium features.",
     },
   ];
 
@@ -46,12 +46,12 @@ const Features = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Everything you need to{" "}
-            <span className="gradient-text">find a match</span>
+            Everything you need to discover{" "}
+            <span className="gradient-text">your LookAlike</span>
           </h2>
-          <p className="text-lg text-gray-600 lg:max-w-[500px] text-center mx-auto">
-            We've built the most comprehensive set of features to make your
-            friendship journey safe, fun, and successful.
+          <p className="text-lg text-gray-600 lg:max-w-[620px] text-center mx-auto">
+            Built with intelligent matching, facial recognition, and secure
+            verification to create authentic and meaningful connections.
           </p>
         </div>
 
@@ -71,7 +71,7 @@ const Features = () => {
               <h4 className="text-xl font-bold text-gray-900 mb-3">
                 {feature.title}
               </h4>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-[1.3]">
                 {feature.description}
               </p>
             </motion.div>

@@ -16,13 +16,14 @@ const Hero = () => {
             className="text-center lg:text-left"
           >
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
-              Find the connection you've been{" "}
-              <span className="gradient-text">looking for.</span>
+              Find people who match your vibe and{" "}
+              <span className="gradient-text">your looks.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Join millions of people building genuine connections, discovering
-              shared interests, and forming meaningful friendships. Your next
-              great connection is just a swipe away.
+              Discover meaningful connections through shared interests and
+              facial similarity. LookAlike blends smart matchmaking with
+              advanced facial recognition to help you connect with compatible
+              matches and visually similar people around you.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <button className="w-full sm:w-auto flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:bg-gray-800 transition-colors">

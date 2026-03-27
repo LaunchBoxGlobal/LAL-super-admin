@@ -1,20 +1,5 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import {
-  Heart,
-  MessageCircle,
-  Shield,
-  Sliders,
-  UserPlus,
-  Star,
-  Menu,
-  X,
-  Apple,
-  Play,
-  CheckCircle2,
-  Lock,
-  Zap,
-} from "lucide-react";
+import { motion } from "motion/react";
+import { Star } from "lucide-react";
 
 const HowItWorks = () => {
   const steps = [
@@ -22,25 +7,25 @@ const HowItWorks = () => {
       number: "01",
       title: "Create your profile",
       description:
-        "Add your best photos and answer a few fun prompts to show your personality.",
+        "Upload 3–6 photos, add your bio, interests, and personal details to build your identity.",
     },
     {
       number: "02",
-      title: "Discover matches",
+      title: "Verify your identity",
       description:
-        "Browse through curated profiles based on your preferences and location.",
+        "Take a live photo. Our system confirms authenticity and improves facial similarity accuracy.",
     },
     {
       number: "03",
-      title: "Make a connection",
+      title: "Discover matches & lookalikes",
       description:
-        "Swipe right if you're interested. If they swipe right too, it's a match!",
+        "Browse profiles based on compatibility, location, and facial similarity percentage.",
     },
     {
       number: "04",
-      title: "Start chatting",
+      title: "Like, match & start chatting",
       description:
-        "Break the ice with our built-in conversation starters and plan your first hangout.",
+        "Mutual likes create a match. Connect instantly and begin meaningful conversations.",
     },
   ];
 
@@ -53,11 +38,11 @@ const HowItWorks = () => {
               How It Works
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Your journey to find a match starts here
+              Your LookAlike journey starts here
             </h3>
             <p className="text-lg text-gray-600 mb-10">
-              We've made finding your perfect match as simple and intuitive as
-              possible. Just follow these steps.
+              Getting started is simple. Follow these steps to find compatible
+              matches and discover people who look like you.
             </p>
 
             <div className="space-y-8">

@@ -24,11 +24,12 @@ const CTA = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to find your match?
+            Ready to discover your LookAlike?
           </h2>
           <p className="text-xl text-indigo-100 mb-10 max-w-2xl mx-auto">
-            Download the app today and start meeting amazing people near you.
-            Create your account for free.
+            Download the app and start exploring compatible matches and visually
+            similar profiles near you. Create your account, verify your
+            identity, and see your lookalike percentage in seconds.
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">

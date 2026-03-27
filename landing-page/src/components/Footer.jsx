@@ -28,8 +28,10 @@ const Footer = () => {
                 LookAlike Match
               </span>
             </div>
-            <p className="text-sm text-gray-400 mb-4 lg:w-[230px]">
-              Making meaningful connections happen every single day.
+            <p className="text-sm text-gray-400 mb-4 lg:w-[330px]">
+              Helping people connect through compatibility and facial
+              similarity. Discover meaningful connections and real lookalikes
+              every day.
             </p>
           </div>
 
