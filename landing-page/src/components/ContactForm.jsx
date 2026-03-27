@@ -51,7 +51,7 @@ export default function ContactForm() {
   });
 
   return (
-    <div className="pt-32 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-screen">
+    <div className="pt-32 pb-20 max-w-7xl mx-auto padding-x min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

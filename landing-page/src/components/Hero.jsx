@@ -7,7 +7,7 @@ const Hero = () => {
       id="home"
       className="pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden relative"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto padding-x relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -15,7 +15,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left"
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight leading-none mb-6">
               Find people who match your vibe and{" "}
               <span className="gradient-text">your looks.</span>
             </h1>

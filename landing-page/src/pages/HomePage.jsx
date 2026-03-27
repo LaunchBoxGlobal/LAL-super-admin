@@ -23,7 +23,7 @@ export default function HomePage() {
   }, [location]);
 
   return (
-    <div className="min-h-screen  selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen selection:bg-brand-100 selection:text-brand-900">
       <Navbar />
       <main>
         <Hero />

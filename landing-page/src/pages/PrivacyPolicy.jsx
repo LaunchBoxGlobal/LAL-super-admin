@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen  selection:bg-brand-100 selection:text-brand-900">
       <Navbar />
-      <div className="w-full relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-48 pb-10">
+      <div className="w-full relative max-w-7xl mx-auto padding-x pt-48 pb-10">
         <h2 className="text-[24px] font-semibold leading-none">
           Privacy Policy
         </h2>

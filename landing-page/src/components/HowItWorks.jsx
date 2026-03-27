@@ -31,7 +31,7 @@ const HowItWorks = () => {
 
   return (
     <section id="how-it-works" className="py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto padding-x">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-sm font-bold tracking-wide uppercase text-[#5E51C9] mb-2">
