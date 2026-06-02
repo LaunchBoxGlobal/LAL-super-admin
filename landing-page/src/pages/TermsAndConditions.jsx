@@ -15,7 +15,7 @@ const TermsAndConditions = () => {
         <div className="w-full border my-5" />
 
         <div className="w-full">
-          <p className="">Last Updated: May 2026</p>
+          <p className="">Last Updated: June 2, 2026</p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">1. Introduction</h3>
 
@@ -244,13 +244,10 @@ const TermsAndConditions = () => {
           <h3 className="font-semibold text-xl mt-4 mb-2">
             13. Limitation of Liability
           </h3>
-
           <p className="">
             LookaLike is provided on an “as is” and “as available” basis.
           </p>
-
           <p className="mt-2">We are not responsible for:</p>
-
           <ul className="mt-2 list-disc pl-4">
             {[
               "User behavior or interactions",
@@ -260,17 +257,72 @@ const TermsAndConditions = () => {
               return <li key={i}>{t}</li>;
             })}
           </ul>
+          {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            14. Changes to Terms
+            14. Facial Similarity Matching Consent
           </h3>
+          <p className="">
+            By uploading photos to LookALike, you acknowledge and agree that
+            your uploaded images may be processed solely for the purpose of
+            generating facial similarity comparisons between users and providing
+            lookalike match results within the Application. You represent and
+            warrant that you own, control, or otherwise have the necessary
+            rights and permissions to upload any photos submitted to the
+            Application and that such uploads do not violate the rights of any
+            third party.
+          </p>
+          <p className="">
+            LookALike uses uploaded photos only to provide facial similarity
+            comparison functionality. Uploaded photos are not used for
+            advertising purposes, artificial intelligence model training,
+            identity verification, surveillance activities, or sale to third
+            parties. Users may delete their account at any time. Upon account
+            deletion, associated profile photos and facial data maintained by
+            the Application will be removed in accordance with the Privacy
+            Policy.
+          </p>
 
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            15. Child Safety and Prohibited Conduct
+          </h3>
+          <p className="">
+            LookALike maintains a zero-tolerance policy toward Child Sexual
+            Abuse and Exploitation (CSAE), Child Sexual Abuse Material (CSAM),
+            child sexual exploitation material (CSEM), grooming, solicitation of
+            minors, trafficking, or any activity that exploits, harms, or
+            endangers children.
+          </p>
+          <p className="">
+            Users may not upload, share, transmit, request, promote, or engage
+            in content or behavior involving the exploitation or abuse of
+            minors.
+          </p>
+          <p className="">
+            Any violation of this policy may result in immediate content
+            removal, account suspension, permanent account termination, and
+            reporting to relevant law enforcement authorities where required by
+            applicable law.
+          </p>
+          <p className="">
+            For additional information, please refer to our Child Safety
+            Standards page:{" "}
+            <Link to={"/child-safety-standards"}>
+              https://lookalikematch.com/child-safety-standards
+            </Link>
+          </p>
+
+          {/*  */}
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            16. Changes to Terms
+          </h3>
           <p className="">
             We may update these Terms from time to time. Continued use of the
             Service after updates constitutes acceptance of the revised Terms.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">15. Contact Us</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">17. Contact Us</h3>
 
           <p className="">
             If you have any questions regarding these Terms, please contact us:

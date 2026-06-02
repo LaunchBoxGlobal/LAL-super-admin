@@ -95,6 +95,22 @@ const Footer = () => {
                   Terms & Conditions
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/end-user-license-agreement"
+                  className="hover:text-white transition-colors"
+                >
+                  User License Agreement
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/child-safety-standards"
+                  className="hover:text-white transition-colors"
+                >
+                  Child Safety Standards
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

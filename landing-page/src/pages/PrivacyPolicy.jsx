@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen  selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen selection:bg-brand-100 selection:text-brand-900">
       <Navbar />
       <div className="w-full relative max-w-7xl mx-auto padding-x pt-48 pb-10">
         <h2 className="text-[24px] font-semibold leading-none">
@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
         <div className="w-full border my-5" />
 
         <div className="w-full">
-          <p className="">Last Updated: May 2026</p>
+          <p className="">Last Updated: June 2, 2026</p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">1. Introduction</h3>
 
@@ -219,9 +219,87 @@ const PrivacyPolicy = () => {
             depending on infrastructure and service providers.
           </p>
           <p className="">By using LookaLike, you consent to such transfers.</p>
+          {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            12. Changes to This Privacy Policy
+            12. Facial Data Processing and Similarity Matching
+          </h3>
+          <p className="">
+            LookALike provides facial similarity matching features that allow
+            users to discover and compare lookalike matches using photos they
+            voluntarily upload to the platform.
+          </p>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            13. Facial Data Collection
+          </h3>
+          <p className="">
+            When you upload a profile photo, the image may contain facial
+            information that is required to provide the core functionality of
+            the Application. We collect and process uploaded photos solely for
+            the purpose of generating facial similarity comparisons between
+            users and providing lookalike match results within the Application.
+          </p>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            14. How Facial Data Is Used
+          </h3>
+          <p className="">Facial data is used exclusively to:</p>
+          <ul className="mt-2 list-disc pl-4">
+            {[
+              "Generate facial similarity comparisons between users",
+              "Produce lookalike match results within the Application",
+            ]?.map((p, i) => {
+              return <li key={i}>{p}</li>;
+            })}
+          </ul>
+          <p className="">
+            Facial data is not used for advertising, marketing, user profiling
+            unrelated to the Application’s functionality, training artificial
+            intelligence models, or sold to third parties.
+          </p>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            15. Storage and Security
+          </h3>
+          <p className="">
+            To provide facial similarity comparison functionality, uploaded
+            photos may be securely processed using Amazon Web Services (AWS),
+            including Amazon Rekognition.
+          </p>
+          <p className="">
+            Amazon Rekognition is used solely to compare facial characteristics
+            for similarity matching purposes. LookALike does not use facial data
+            for identity verification, surveillance, law enforcement purposes,
+            advertising, or artificial intelligence model training.
+          </p>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            16. How Facial Data Is Used
+          </h3>
+          <p className="">
+            Uploaded profile photos are securely stored using Amazon Web
+            Services (AWS) S3 storage infrastructure. Appropriate technical and
+            organizational safeguards are implemented to help protect user data
+            against unauthorized access, disclosure, alteration, or destruction.
+          </p>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            17. Retention and Deletion
+          </h3>
+          <p className="">
+            Uploaded profile photos are retained only while the associated user
+            account remains active. When a user deletes their account,
+            associated profile photos and facial data maintained by the
+            Application are deleted immediately. LookALike does not retain
+            Amazon Rekognition comparison records after processing and does not
+            maintain archived facial recognition records following account
+            deletion.
+          </p>
+
+          {/*  */}
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            18. Changes to This Privacy Policy
           </h3>
           <p className="">
             We may update this Privacy Policy from time to time.
@@ -231,7 +309,7 @@ const PrivacyPolicy = () => {
             revised policy.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">13. Contact Us</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">19. Contact Us</h3>
           <p className="">
             If you have any questions about this Privacy Policy, please contact
             us:
