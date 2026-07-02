@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import HowItWorks from "../components/HowItWorks";
 import Navbar from "../components/Navbar";
 import { useEffect } from "react";
+import Patent from "../components/Patent";
 
 export default function HomePage() {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function HomePage() {
         <Hero />
         <Features />
         <HowItWorks />
+        <Patent />
         <CTA />
       </main>
       <Footer />
