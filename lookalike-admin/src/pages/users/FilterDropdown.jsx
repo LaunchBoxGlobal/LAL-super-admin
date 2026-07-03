@@ -28,7 +28,7 @@ const DEFAULT_FILTERS = {
   maxAge: 80,
   startDate: null,
   endDate: null,
-  gender: "women",
+  gender: "everyone",
 };
 
 // "YYYY-MM-DD" (from <input type="date">) -> full ISO string, anchored to
@@ -78,15 +78,15 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
     };
   }, [isOpen]);
 
-  const handleReset = () => {
-    setAgeRange([DEFAULT_FILTERS.minAge, DEFAULT_FILTERS.maxAge]);
-    setStartDate("");
-    setEndDate("");
-    setSelectedStatus(DEFAULT_FILTERS.membershipStatus);
-    setSelectedGender(DEFAULT_FILTERS.gender);
-    setIsOpen(false);
-    setIsStatusDropdownOpen(false);
-  };
+  // const handleReset = () => {
+  //   setAgeRange([DEFAULT_FILTERS.minAge, DEFAULT_FILTERS.maxAge]);
+  //   setStartDate("");
+  //   setEndDate("");
+  //   setSelectedStatus(DEFAULT_FILTERS.membershipStatus);
+  //   setSelectedGender(DEFAULT_FILTERS.gender);
+  //   setIsOpen(false);
+  //   setIsStatusDropdownOpen(false);
+  // };
 
   const handleApply = () => {
     const filters = {
@@ -98,6 +98,23 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
       gender: selectedGender,
     };
     onApply?.(filters);
+    setIsOpen(false);
+    setIsStatusDropdownOpen(false);
+  };
+
+  const handleReset = () => {
+    setAgeRange([DEFAULT_FILTERS.minAge, DEFAULT_FILTERS.maxAge]);
+    setStartDate("");
+    setEndDate("");
+    setSelectedStatus(DEFAULT_FILTERS.membershipStatus);
+    setSelectedGender(DEFAULT_FILTERS.gender);
+
+    onApply?.({
+      ...DEFAULT_FILTERS,
+      startDate: null,
+      endDate: null,
+    });
+
     setIsOpen(false);
     setIsStatusDropdownOpen(false);
   };
@@ -291,7 +308,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-4 relative z-10">
+          <div className="flex gap-4 relative z-20">
             <button
               type="button"
               onClick={handleReset}
