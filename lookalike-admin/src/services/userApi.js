@@ -42,7 +42,7 @@ export const userApi = createApi({
 
         // "all" means "no filter" from the dropdown, so don't send it
         if (membershipStatus && membershipStatus !== "all") {
-          params.append("status", membershipStatus);
+          params.append("membershipStatus", membershipStatus);
         }
 
         // numbers: `if (minAge)` would drop a legitimate 0, so check for
