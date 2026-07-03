@@ -54,6 +54,24 @@ const DashboardStats = (stats) => {
           height={67}
         />
       </div>
+
+      {/* total revenue */}
+      <div className="w-full md:max-w-[250px] bg-white custom-shadow rounded-[20px] p-5 relative flex items-center justify-between gap-3 flex-wrap z-30">
+        <div className="">
+          <h2 className="font-medium text-[var(--secondary-text)]">
+            Total Revenue
+          </h2>
+          <p className="text-[24px] font-semibold">
+            {`$${stats?.stats?.totalRevenue || 0}`}
+          </p>
+        </div>
+        <img
+          src="/revenue-icon.png"
+          alt="revenue-icon"
+          width={67}
+          height={67}
+        />
+      </div>
     </div>
   );
 };

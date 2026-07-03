@@ -7,12 +7,13 @@ export const dashboardApi = createApi({
   endpoints: (builder) => ({
     // get dashboard stats
     getStats: builder.query({
-      query: ({ occupationUseage }) => {
+      query: ({ occupationUseage, revenue }) => {
         return {
           url: `/admin/dashboard/stats`,
           method: "GET",
           params: {
             occupationUseage,
+            revenue,
           },
         };
       },

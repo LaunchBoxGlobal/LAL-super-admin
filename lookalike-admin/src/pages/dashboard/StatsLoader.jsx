@@ -1,7 +1,7 @@
 const StatsLoader = () => {
   return (
     <div className="w-full flex items-center gap-5 flex-wrap mt-5 relative z-40">
-      {[1, 2, 3].map((_, i) => {
+      {[1, 2, 3, 4].map((_, i) => {
         return (
           <div
             key={i}

@@ -2,7 +2,6 @@ import { GoDotFill } from "react-icons/go";
 import { AGE_GENDER_STATS } from "../../constants/ageGenderStats";
 
 const AgeAndGenderChart = ({ data }) => {
-  console.log("data >> ", data);
   return (
     <div className="w-full bg-white rounded-[20px] custom-shadow relative z-[2000]">
       <div className="w-full px-5 pt-5">
@@ -30,57 +29,69 @@ const AgeAndGenderChart = ({ data }) => {
 
       <div className="w-full border my-5" />
 
-      <div className="w-full px-5 pb-8 space-y-4 relative">
-        {data?.map((c, i) => {
-          return (
-            <div key={i} className="w-full relative">
-              <div className="w-full flex items-center justify-between">
-                <h4 className="text-sm font-medium text-[#888888] leading-none">
-                  {c?.ageGroup}
-                </h4>
-                <p className="text-sm text-[#888888] font-semibold">
-                  {c?.percentage}%
-                </p>
-              </div>
-              <div className="w-full mt-1">
-                <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5] relative overflow-hidden">
+      <div className="w-full px-5 pb-8 space-y-4">
+        {data?.map((c, i) => (
+          <div key={i} className="w-full">
+            {/* Header */}
+            <div className="w-full flex items-center justify-between">
+              <h4 className="text-sm font-medium text-[#888888] leading-none">
+                {c?.ageGroup}
+              </h4>
+              <p className="text-sm text-[#888888] font-semibold">
+                {c?.percentage}%
+              </p>
+            </div>
+
+            {/* Progress */}
+            <div className="w-full mt-1 relative">
+              {/* Gray Track — overflow-hidden removed */}
+              <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5]">
+                {/* Colored Progress */}
+                <div
+                  className="h-full flex transition-all duration-500"
+                  style={{
+                    width: `${c?.percentage}%`,
+                    minWidth: c?.percentage > 0 ? "20px" : "0px",
+                  }}
+                >
                   {/* Female */}
                   <div
-                    className={`absolute left-0 top-1/2 -translate-y-1/2 h-[16px] z-20 group cursor-pointer ${c?.maleCount === 0 ? "rounded-[4px]" : "rounded-l-[4px]"}`}
+                    className={`relative h-full group cursor-pointer ${
+                      c?.maleCount === 0 ? "rounded-[4px]" : "rounded-l-[4px]"
+                    }`}
                     style={{
                       width: `${c?.femalePercentage}%`,
-                      minWidth: c?.femaleCount > 0 ? "20px" : "0px",
                       background: "#E0C6FD",
                     }}
                   >
                     {c?.femaleCount > 0 && (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                        {c?.femaleCount} users
+                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
+                        Female: {c?.femaleCount} users
                       </span>
                     )}
                   </div>
 
                   {/* Male */}
                   <div
-                    className={`absolute top-1/2 -translate-y-1/2 h-[16px] z-10 group cursor-pointer ${c?.femaleCount === 0 ? "rounded-[4px]" : "rounded-r-[4px]"}`}
+                    className={`relative h-full group cursor-pointer ${
+                      c?.femaleCount === 0 ? "rounded-[4px]" : "rounded-r-[4px]"
+                    }`}
                     style={{
-                      right: 0,
                       width: `${c?.malePercentage}%`,
-                      minWidth: c?.maleCount > 0 ? "20px" : "0px",
                       background: "#5E51C9",
                     }}
                   >
                     {c?.maleCount > 0 && (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                        {c?.maleCount} users
+                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
+                        Male: {c?.maleCount} users
                       </span>
                     )}
                   </div>
                 </div>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );

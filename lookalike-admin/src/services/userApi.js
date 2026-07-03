@@ -18,19 +18,48 @@ export const userApi = createApi({
         page,
         limit,
         skip,
-        status,
         isVerified = true,
         isSuspended = true,
+        membershipStatus,
+        minAge,
+        maxAge,
+        startDate,
+        endDate,
+        gender,
       }) => {
         const params = new URLSearchParams();
 
-        if (search) params.append(`search`, search);
-        if (status) params.append("status", status);
+        if (search) params.append("search", search);
         if (limit) params.append("limit", limit);
         if (page) params.append("page", page);
         if (skip) params.append("skip", skip);
-        if (isVerified) params.append("isVerified", isVerified);
-        params.append("isSuspended", isSuspended);
+
+        // booleans: use explicit checks, not `if (value)` — `if (false)` would
+        // silently drop the param and fall back to the backend's own default
+        if (isVerified !== undefined) params.append("isVerified", isVerified);
+        if (isSuspended !== undefined)
+          params.append("isSuspended", isSuspended);
+
+        // "all" means "no filter" from the dropdown, so don't send it
+        if (membershipStatus && membershipStatus !== "all") {
+          params.append("status", membershipStatus);
+        }
+
+        // numbers: `if (minAge)` would drop a legitimate 0, so check for
+        // undefined/null instead
+        if (minAge !== undefined && minAge !== null) {
+          params.append("minAge", minAge);
+        }
+        if (maxAge !== undefined && maxAge !== null) {
+          params.append("maxAge", maxAge);
+        }
+
+        if (startDate) params.append("startDate", startDate);
+        if (endDate) params.append("endDate", endDate);
+
+        if (gender && gender !== "everyone") {
+          params.append("gender", gender);
+        }
 
         return {
           url: `/admin/user/all?${params.toString()}`,

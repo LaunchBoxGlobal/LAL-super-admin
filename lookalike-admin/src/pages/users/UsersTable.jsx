@@ -1,4 +1,6 @@
 import { FaCircleUser } from "react-icons/fa6";
+import { formatDate } from "../../utils/formatDate";
+import { formatMembershipStatus } from "../../utils/formatMembershipStatus";
 
 const UsersTable = ({ users }) => {
   return (
@@ -9,7 +11,7 @@ const UsersTable = ({ users }) => {
             <th scope="col" className="px-6 py-4 font-medium rounded-l-[16px]">
               Name
             </th>
-            <th scope="col" className="px-6 py-4 font-medium">
+            <th scope="col" className="px-6 py-4 font-medium whitespace-nowrap">
               Email Address
             </th>
             <th scope="col" className="px-6 py-4 font-medium">
@@ -18,8 +20,14 @@ const UsersTable = ({ users }) => {
             <th scope="col" className="px-6 py-4 font-medium">
               Gender
             </th>
-            <th scope="col" className="px-6 py-4 font-medium rounded-r-[16px]">
-              Occupation
+            <th scope="col" className="px-6 py-4 font-medium whitespace-nowrap">
+              Date
+            </th>
+            <th
+              scope="col"
+              className="px-6 py-4 font-medium rounded-r-[16px] whitespace-nowrap"
+            >
+              Membership Status
             </th>
           </tr>
         </thead>
@@ -51,8 +59,10 @@ const UsersTable = ({ users }) => {
                   {user?.gender.charAt(0).toUpperCase() + user?.gender.slice(1)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {user?.occupation.charAt(0).toUpperCase() +
-                    user?.occupation.slice(1)}
+                  {formatDate(user?.createdAt)}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {formatMembershipStatus(user?.membershipStatus)}
                 </td>
               </tr>
             );
