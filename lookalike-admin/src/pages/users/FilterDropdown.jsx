@@ -143,7 +143,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
 
       {isOpen && (
         <div
-          className="absolute right-0 z-50 mt-2 w-[480px] p-8 rounded-[32px] overflow-hidden custom-shadow"
+          className="absolute right-0 z-50 mt-2 w-[330px] md:w-[480px] p-8 rounded-[32px] overflow-hidden custom-shadow"
           style={{ background: "white" }}
         >
           <img
@@ -209,7 +209,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
           </div>
 
           {/* Dates */}
-          <div className="flex gap-4 mb-5 relative z-10">
+          <div className="flex flex-col md:flex-row gap-4 mb-5 relative z-10">
             <div className="flex-1">
               <label className="block text-xs font-semibold text-gray-900 mb-2">
                 Starting Date
