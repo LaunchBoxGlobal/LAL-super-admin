@@ -51,12 +51,19 @@ const UsersTable = ({ users }) => {
                     <FaCircleUser size={41} className="text-gray-700" />
                   )}
 
-                  {user?.name}
+                  {user?.name || "N/A"}
                 </th>
-                <td className="px-6 py-4 whitespace-nowrap">{user?.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{user?.age}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {user?.gender.charAt(0).toUpperCase() + user?.gender.slice(1)}
+                  {user?.email || "N/A"}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {user?.age || "N/A"}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {user?.gender
+                    ? user?.gender?.charAt(0).toUpperCase() +
+                      user?.gender?.slice(1)
+                    : "N/A"}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {formatDate(user?.createdAt)}

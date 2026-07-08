@@ -38,13 +38,10 @@ export const userApi = createApi({
         if (isSuspended !== undefined)
           params.append("isSuspended", isSuspended);
 
-        // "all" means "no filter" from the dropdown, so don't send it
         if (membershipStatus && membershipStatus !== "all") {
           params.append("membershipStatus", membershipStatus);
         }
 
-        // numbers: `if (minAge)` would drop a legitimate 0, so check for
-        // undefined/null instead
         if (minAge !== undefined && minAge !== null) {
           params.append("minAge", minAge);
         }

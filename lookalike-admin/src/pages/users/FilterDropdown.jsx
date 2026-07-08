@@ -25,8 +25,8 @@ const GENDERS = [
 
 const DEFAULT_FILTERS = {
   membershipStatus: "all",
-  minAge: 18,
-  maxAge: 80,
+  minAge: null,
+  maxAge: null,
   startDate: null,
   endDate: null,
   gender: "everyone",

@@ -14,8 +14,8 @@ const UsersPage = () => {
   const [openFilterDropdown, setOpenFilterDropdown] = useState(false);
   const [filters, setFilters] = useState({
     membershipStatus: "all",
-    minAge: 18,
-    maxAge: 80,
+    minAge: null,
+    maxAge: null,
     startDate: null,
     endDate: null,
     gender: "everyone",
