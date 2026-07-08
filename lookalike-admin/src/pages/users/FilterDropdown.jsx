@@ -13,6 +13,7 @@ const MEMBERSHIP_STATUSES = [
   { title: "Free Trial", key: "free_trial" },
   { title: "Trial Expired", key: "trial_expired" },
   { title: "Subscribed", key: "subscribed" },
+  { title: "Subscription Expired", key: "subscription_expired" },
   { title: "Never Subscribed", key: "never_subscribed" },
 ];
 
@@ -77,16 +78,6 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
-
-  // const handleReset = () => {
-  //   setAgeRange([DEFAULT_FILTERS.minAge, DEFAULT_FILTERS.maxAge]);
-  //   setStartDate("");
-  //   setEndDate("");
-  //   setSelectedStatus(DEFAULT_FILTERS.membershipStatus);
-  //   setSelectedGender(DEFAULT_FILTERS.gender);
-  //   setIsOpen(false);
-  //   setIsStatusDropdownOpen(false);
-  // };
 
   const handleApply = () => {
     const filters = {

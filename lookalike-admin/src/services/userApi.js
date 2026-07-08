@@ -18,8 +18,8 @@ export const userApi = createApi({
         page,
         limit,
         skip,
-        isVerified = true,
-        isSuspended = true,
+        isVerified = false,
+        isSuspended = false,
         membershipStatus,
         minAge,
         maxAge,
@@ -34,9 +34,7 @@ export const userApi = createApi({
         if (page) params.append("page", page);
         if (skip) params.append("skip", skip);
 
-        // booleans: use explicit checks, not `if (value)` — `if (false)` would
-        // silently drop the param and fall back to the backend's own default
-        if (isVerified !== undefined) params.append("isVerified", isVerified);
+        // if (isVerified !== undefined) params.append("isVerified", isVerified);
         if (isSuspended !== undefined)
           params.append("isSuspended", isSuspended);
 
