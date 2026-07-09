@@ -78,7 +78,7 @@ body {
 }
 
 .padding-x {
-  @apply px-5;
+  @apply px-4;
 }
 
 /* width */

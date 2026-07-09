@@ -90,14 +90,14 @@ const RevealMoment = () => {
       </div>
 
       <section className="pt-10 lg:pt-14 relative z-20 overflow-hidden w-full">
-        <div className="px-4 md:px-8 relative z-10 w-full">
+        <div className="px-0 md:px-8 relative z-10 w-full">
           {/* Tab Navigation */}
-          <div className="flex glass-card rounded-full shadow-[0_8px_30px_-10px_rgba(0,0,0,0.06)] p-1.5 w-max mx-auto lg:mb-5 relative z-10 overflow-hidden">
+          <div className="flex glass-card rounded-full p-1 md:p-1.5 w-max mx-auto lg:mb-5 relative z-10 overflow-hidden">
             {featuresTabs.map((tab, i) => (
               <button
                 key={i}
                 onClick={() => setActiveTab(i)}
-                className={`px-3 lg:px-6 py-2.5 rounded-full flex items-center gap-2.5 text-[11px] md:text-[13px] font-semibold transition-all relative ${
+                className={`px-3 lg:px-6 py-2.5 rounded-full flex items-center gap-1 md:gap-2.5 text-[10px] md:text-[13px] font-semibold transition-all relative ${
                   activeTab === i
                     ? "text-slate-800"
                     : "text-slate-500 hover:text-slate-700 hover:bg-slate-50/50"
