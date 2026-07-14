@@ -32,7 +32,7 @@ export function WaitlistModal({ isOpen, onClose }) {
       try {
         setSubmitting(true);
 
-        // await axios.post("https://lookalikematch.com/api/customer-support", {
+        // await axios.post("https://api.lookalikematch.com/api/customer-support", {
         //   name: values.name,
         //   email: values.email,
         //   subject: "Waitlist Form",

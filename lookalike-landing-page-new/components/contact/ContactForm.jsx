@@ -32,7 +32,7 @@ export default function ContactForm() {
         setSubmitError("");
         // Mock API call using JSONPlaceholder
         await axios.post(
-          `https://lookalikematch.com/api/customer-support`,
+          `https://api.lookalikematch.com/customer-support`,
           values,
         );
         setIsSubmitted(true);
