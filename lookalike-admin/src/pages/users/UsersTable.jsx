@@ -23,6 +23,10 @@ const UsersTable = ({ users }) => {
             <th scope="col" className="px-6 py-4 font-medium whitespace-nowrap">
               Date
             </th>
+            <th scope="col" className="px-6 py-4 font-medium whitespace-nowrap">
+              Account Status
+            </th>
+
             <th
               scope="col"
               className="px-6 py-4 font-medium rounded-r-[16px] whitespace-nowrap"
@@ -67,6 +71,17 @@ const UsersTable = ({ users }) => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {formatDate(user?.createdAt)}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  {user?.isVerified ? (
+                    <span className="text-xs text-green-500 bg-green-100 px-2 py-1.5 rounded-md font-medium">
+                      Verified
+                    </span>
+                  ) : (
+                    <span className="bg-red-100 rounded-md text-red-500 px-2 py-1.5 text-xs font-medium">
+                      Verification Pending
+                    </span>
+                  )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {formatMembershipStatus(user?.membershipStatus)}

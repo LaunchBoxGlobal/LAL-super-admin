@@ -28,7 +28,7 @@ const SuspendedUsers = () => {
       {
         page: Number(page),
         search: searchTerm,
-        isVerified: true,
+        isVerified: "all",
         isSuspended: true,
       },
       {

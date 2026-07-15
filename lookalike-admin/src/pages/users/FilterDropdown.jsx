@@ -17,6 +17,21 @@ const MEMBERSHIP_STATUSES = [
   { title: "Never Subscribed", key: "never_subscribed" },
 ];
 
+const ACCOUNT_STATUS = [
+  {
+    title: "All",
+    value: "all",
+  },
+  {
+    title: "Verified",
+    value: true,
+  },
+  {
+    title: "Pending",
+    value: false,
+  },
+];
+
 const GENDERS = [
   { title: "Women", key: "women" },
   { title: "Men", key: "men" },
@@ -30,16 +45,14 @@ const DEFAULT_FILTERS = {
   startDate: null,
   endDate: null,
   gender: "everyone",
+  isVerified: "all",
 };
 
-// "YYYY-MM-DD" (from <input type="date">) -> full ISO string, anchored to
-// UTC midnight so the selected calendar day never shifts with local tz.
 function toISODate(dateStr) {
   if (!dateStr) return null;
   return new Date(`${dateStr}T00:00:00.000Z`).toISOString();
 }
 
-// ISO string -> "YYYY-MM-DD" so we can pre-fill <input type="date">.
 function toInputDate(isoStr) {
   if (!isoStr) return "";
   return isoStr.slice(0, 10);
@@ -59,6 +72,12 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const [selectedGender, setSelectedGender] = useState(merged.gender);
 
+  const [selectedAccountStatus, setSelectedAccountStatus] = useState(
+    merged.isVerified,
+  );
+
+  const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false);
+
   // Close on outside click
   useEffect(() => {
     function handleClickOutside(event) {
@@ -68,6 +87,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
       ) {
         setIsOpen(false);
         setIsStatusDropdownOpen(false);
+        setIsAccountDropdownOpen(false);
       }
     }
 
@@ -87,10 +107,12 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
       startDate: toISODate(startDate),
       endDate: toISODate(endDate),
       gender: selectedGender,
+      isVerified: selectedAccountStatus,
     };
     onApply?.(filters);
     setIsOpen(false);
     setIsStatusDropdownOpen(false);
+    setIsAccountDropdownOpen(false);
   };
 
   const handleReset = () => {
@@ -99,6 +121,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
     setEndDate("");
     setSelectedStatus(DEFAULT_FILTERS.membershipStatus);
     setSelectedGender(DEFAULT_FILTERS.gender);
+    setSelectedAccountStatus(DEFAULT_FILTERS.isVerified);
 
     onApply?.({
       ...DEFAULT_FILTERS,
@@ -108,10 +131,15 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
 
     setIsOpen(false);
     setIsStatusDropdownOpen(false);
+    setIsAccountDropdownOpen(false);
   };
 
   const selectedStatusTitle =
     MEMBERSHIP_STATUSES.find((s) => s.key === selectedStatus)?.title ?? "All";
+
+  const selectedAccountTitle =
+    ACCOUNT_STATUS.find((status) => status.value === selectedAccountStatus)
+      ?.title ?? "All";
 
   return (
     <div
@@ -157,6 +185,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
               onClick={() => {
                 setIsOpen(false);
                 setIsStatusDropdownOpen(false);
+                setIsAccountDropdownOpen(false);
               }}
             >
               <img src="/close.png" alt="close" width={22} height={22} />
@@ -250,6 +279,7 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
                     onClick={() => {
                       setSelectedStatus(status.key);
                       setIsStatusDropdownOpen(false);
+                      setIsAccountDropdownOpen(false);
                     }}
                     className="w-full flex items-center justify-between gap-3 p-2.5 hover:bg-gray-50 rounded-xl cursor-pointer text-left"
                   >
@@ -265,6 +295,55 @@ export default function FilterDropdown({ onApply, initialFilters = {} }) {
                       )}
                     >
                       {selectedStatus === status.key && (
+                        <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                      )}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* account status */}
+          <div className="mb-5 relative z-30">
+            <label className="block text-xs font-semibold text-gray-900 mb-2">
+              Account Status
+            </label>
+
+            <button
+              type="button"
+              onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
+              className="w-full flex items-center justify-between pl-5 pr-4 py-3.5 rounded-2xl bg-white border-none focus:ring-2 focus:ring-[#5473E3] outline-none text-gray-900 custom-shadow text-sm"
+            >
+              <span>{selectedAccountTitle}</span>
+              <TiArrowSortedDown className="w-6 h-6 text-gray-800" />
+            </button>
+
+            {isAccountDropdownOpen && (
+              <div className="absolute w-full mt-2 bg-white z-50 rounded-2xl shadow-lg p-2 border border-gray-100">
+                {ACCOUNT_STATUS.map((status) => (
+                  <button
+                    key={String(status.value)}
+                    type="button"
+                    onClick={() => {
+                      setSelectedAccountStatus(status.value);
+                      setIsAccountDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center justify-between gap-3 p-2.5 hover:bg-gray-50 rounded-xl text-left"
+                  >
+                    <span className="text-gray-800 text-sm">
+                      {status.title}
+                    </span>
+
+                    <div
+                      className={cn(
+                        "w-4 h-4 rounded-full border-[1.5px] flex items-center justify-center",
+                        selectedAccountStatus === status.value
+                          ? "border-[#5473E3] bg-[#5473E3]"
+                          : "border-gray-400 bg-white",
+                      )}
+                    >
+                      {selectedAccountStatus === status.value && (
                         <div className="w-1.5 h-1.5 bg-white rounded-full" />
                       )}
                     </div>

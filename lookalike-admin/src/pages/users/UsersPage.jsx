@@ -8,10 +8,10 @@ import { useState } from "react";
 import FilterDropdown from "./FilterDropdown";
 
 const UsersPage = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm = searchParams.get("search") || "";
   const page = searchParams.get("page") || 1;
-  const [openFilterDropdown, setOpenFilterDropdown] = useState(false);
+
   const [filters, setFilters] = useState({
     membershipStatus: "all",
     minAge: null,
@@ -19,17 +19,34 @@ const UsersPage = () => {
     startDate: null,
     endDate: null,
     gender: "everyone",
+    isVerified: "all",
   });
 
+  const handleApplyFilters = (newFilters) => {
+    setFilters(newFilters);
+
+    const params = new URLSearchParams(searchParams);
+
+    params.set("page", "1");
+
+    setSearchParams(params);
+  };
+
   const { data, isLoading, isError, error, refetch, isFetching } =
-    useGetUsersQuery({
-      page: Number(page),
-      limit: 2,
-      search: searchTerm,
-      isVerified: true,
-      isSuspended: false,
-      ...filters,
-    });
+    useGetUsersQuery(
+      {
+        page: Number(page),
+        limit: 2,
+        search: searchTerm,
+        isSuspended: false,
+        ...(filters.isVerified === "all"
+          ? { ...filters, isVerified: undefined }
+          : filters),
+      },
+      {
+        refetchOnMountOrArgChange: true,
+      },
+    );
 
   const users = data?.result?.data || [];
   const pagination = data?.result?.pagination;
@@ -38,21 +55,26 @@ const UsersPage = () => {
     <section className="w-full relative min-h-screen">
       <div className="w-full flex items-center justify-between gap-3 flex-wrap">
         <h2 className="page-title">
-          Users {users && users?.length > 0 && `(${pagination?.total})`}
+          Users {users && users.length > 0 && `(${pagination?.total})`}
         </h2>
+
         <div className="flex items-center justify-end gap-2 w-full lg:w-auto">
           <SearchField />
-          <FilterDropdown onApply={setFilters} initialFilters={filters} />
+          <FilterDropdown
+            onApply={handleApplyFilters}
+            initialFilters={filters}
+          />
         </div>
       </div>
 
-      {isLoading || (isFetching && <TableSkeleton />)}
+      {(isLoading || isFetching) && <TableSkeleton />}
 
       {!isLoading && !isFetching && isError && (
         <div className="w-full mt-10 text-center">
           <h3 className="text-gray-600 font-semibold text-lg">
             Something went wrong
           </h3>
+
           <p className="text-sm text-gray-500 mt-2">
             {error?.data?.message ||
               "We couldn’t fetch users. Please try again."}
@@ -72,6 +94,7 @@ const UsersPage = () => {
           <h3 className="text-gray-700 font-semibold text-lg">
             No Users Found
           </h3>
+
           <p className="text-sm text-gray-500 mt-2">
             There are no users available at the moment.
           </p>
@@ -81,6 +104,7 @@ const UsersPage = () => {
       {!isLoading && !isFetching && !isError && users.length > 0 && (
         <UsersTable users={users} />
       )}
+
       {!isLoading && !isFetching && !isError && pagination && (
         <Pagination pagination={pagination} />
       )}

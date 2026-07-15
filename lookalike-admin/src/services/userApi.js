@@ -16,9 +16,8 @@ export const userApi = createApi({
       query: ({
         search,
         page,
-        limit,
         skip,
-        isVerified = false,
+        isVerified,
         isSuspended = false,
         membershipStatus,
         minAge,
@@ -30,11 +29,10 @@ export const userApi = createApi({
         const params = new URLSearchParams();
 
         if (search) params.append("search", search);
-        if (limit) params.append("limit", limit);
         if (page) params.append("page", page);
         if (skip) params.append("skip", skip);
 
-        // if (isVerified !== undefined) params.append("isVerified", isVerified);
+        if (isVerified !== undefined) params.append("isVerified", isVerified);
         if (isSuspended !== undefined)
           params.append("isSuspended", isSuspended);
 
