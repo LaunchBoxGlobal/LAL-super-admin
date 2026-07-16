@@ -22,14 +22,14 @@ const TermsAndConditions = () => {
           <h3 className="font-semibold text-xl mt-4 mb-2">1. Introduction</h3>
 
           <p className="">
-            These Terms & Conditions govern your use of the LookaLike mobile
+            These Terms & Conditions govern your use of the LookAlike mobile
             application and related services (“Service”) operated by Tony
-            Kobach, on behalf of LookaLike LLC (“we”, “our”, “us”). By accessing
-            or using LookaLike, you agree to be bound by these Terms.
+            Kobach, on behalf of LookAlike LLC (“we”, “our”, “us”). By accessing
+            or using LookAlike, you agree to be bound by these Terms.
           </p>
 
           <p className="mt-2">
-            LookaLike is a social discovery platform that enables users to
+            LookAlike is a social discovery platform that enables users to
             create profiles, discover nearby users, and access lookalike
             matching features powered by image analysis technologies.
           </p>
@@ -59,7 +59,7 @@ const TermsAndConditions = () => {
             3. Account & Onboarding
           </h3>
 
-          <p className="">To use LookaLike, users are required to:</p>
+          <p className="">To use LookAlike, users are required to:</p>
 
           <ul className="mt-2 list-disc pl-4">
             {[
@@ -81,7 +81,7 @@ const TermsAndConditions = () => {
           </h3>
 
           <p className="">
-            LookaLike uses image analysis and facial comparison technologies to:
+            LookAlike uses image analysis and facial comparison technologies to:
           </p>
 
           <ul className="mt-2 list-disc pl-4">
@@ -132,7 +132,7 @@ const TermsAndConditions = () => {
           </h3>
 
           <p className="">
-            LookaLike enables users to connect and communicate within the app.
+            LookAlike enables users to connect and communicate within the app.
           </p>
 
           <p className="mt-2">
@@ -146,20 +146,7 @@ const TermsAndConditions = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            7. Location-Based Services
-          </h3>
-
-          <p className="">
-            LookaLike uses geolocation to provide nearby discovery features.
-          </p>
-
-          <p className="mt-2">
-            Location data may not always be accurate or real-time. We do not
-            guarantee precise distance or availability of users.
-          </p>
-
-          <h3 className="font-semibold text-xl mt-4 mb-2">
-            8. Messaging & Communication
+            7. Messaging & Communication
           </h3>
 
           <p className="">
@@ -172,10 +159,10 @@ const TermsAndConditions = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            9. Subscription & In-App Purchases
+            8. Subscription & In-App Purchases
           </h3>
 
-          <p className="">LookaLike operates on a subscription-based model:</p>
+          <p className="">LookAlike operates on a subscription-based model:</p>
 
           <ul className="mt-2 list-disc pl-4">
             {[
@@ -202,7 +189,7 @@ const TermsAndConditions = () => {
             app store account.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">10. Refund Policy</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">9. Refund Policy</h3>
 
           <p className="">
             All purchases made through Apple App Store or Google Play are
@@ -214,10 +201,10 @@ const TermsAndConditions = () => {
             your app store provider.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">11. Privacy</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">10. Privacy</h3>
 
           <p className="">
-            Your use of LookaLike is also governed by our Privacy Policy.
+            Your use of LookAlike is also governed by our Privacy Policy.
           </p>
 
           <p className="mt-2">
@@ -226,7 +213,7 @@ const TermsAndConditions = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            12. Suspension & Termination
+            11. Suspension & Termination
           </h3>
 
           <p className="">
@@ -244,10 +231,10 @@ const TermsAndConditions = () => {
           </ul>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            13. Limitation of Liability
+            12. Limitation of Liability
           </h3>
           <p className="">
-            LookaLike is provided on an “as is” and “as available” basis.
+            LookAlike is provided on an “as is” and “as available” basis.
           </p>
           <p className="mt-2">We are not responsible for:</p>
           <ul className="mt-2 list-disc pl-4">
@@ -262,7 +249,7 @@ const TermsAndConditions = () => {
           {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            14. Facial Similarity Matching Consent
+            13. Facial Similarity Matching Consent
           </h3>
           <p className="">
             By uploading photos to LookALike, you acknowledge and agree that
@@ -286,7 +273,7 @@ const TermsAndConditions = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            15. Child Safety and Prohibited Conduct
+            14. Child Safety and Prohibited Conduct
           </h3>
           <p className="">
             LookALike maintains a zero-tolerance policy toward Child Sexual
@@ -317,14 +304,14 @@ const TermsAndConditions = () => {
           {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            16. Changes to Terms
+            15. Changes to Terms
           </h3>
           <p className="">
             We may update these Terms from time to time. Continued use of the
             Service after updates constitutes acceptance of the revised Terms.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">17. Contact Us</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">16. Contact Us</h3>
 
           <p className="">
             If you have any questions regarding these Terms, please contact us:

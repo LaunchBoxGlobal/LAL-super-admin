@@ -21,7 +21,7 @@ const ORBITS = [
     direction: -1,
   },
   {
-    radius: 305,
+    radius: 323,
     count: 6,
     size: 12,
     duration: 30,

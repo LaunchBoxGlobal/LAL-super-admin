@@ -20,13 +20,13 @@ const PrivacyPolicy = () => {
           <h3 className="font-semibold text-xl mt-4 mb-2">1. Introduction</h3>
 
           <p className="">
-            This Privacy Policy explains how LookaLike (“we”, “our”, “us”),
-            operated by Tony Kobach on behalf of LookaLike LLC, collects, uses,
+            This Privacy Policy explains how LookAlike (“we”, “our”, “us”),
+            operated by Tony Kobach on behalf of LookAlike LLC, collects, uses,
             and protects your information when you use our mobile application
             and related services (“Service”).
           </p>
           <p className="mt-2">
-            By using LookaLike, you agree to the collection and use of
+            By using LookAlike, you agree to the collection and use of
             information in accordance with this Privacy Policy.
           </p>
 
@@ -77,19 +77,7 @@ const PrivacyPolicy = () => {
             results are algorithm-based and may not be accurate.
           </p>
 
-          <h4 className="font-semibold text-base mt-2 mb-2">
-            d. Location Data
-          </h4>
-          <ul className="mt-2 list-disc pl-4">
-            {[
-              "Approximate or real-time location (with your permission)",
-              "Used to show nearby profiles and improve discovery features",
-            ].map((t, i) => {
-              return <li key={i}>{t}</li>;
-            })}
-          </ul>
-
-          <h4 className="font-semibold text-base mt-2 mb-2">e. Usage Data</h4>
+          <h4 className="font-semibold text-base mt-2 mb-2">d. Usage Data</h4>
           <ul className="mt-2 list-disc pl-4">
             {[
               "App activity, interactions, and preferences",
@@ -100,7 +88,7 @@ const PrivacyPolicy = () => {
           </ul>
 
           <h4 className="font-semibold text-base mt-2 mb-2">
-            f. Communication Data
+            e. Communication Data
           </h4>
           <ul className="mt-2 list-disc pl-4">
             {[
@@ -197,7 +185,7 @@ const PrivacyPolicy = () => {
             9. Children’s Privacy
           </h3>
           <p className="">
-            LookaLike is not intended for users under the age of 18.
+            LookAlike is not intended for users under the age of 18.
           </p>
           <p className="">We do not knowingly collect data from minors.</p>
 
@@ -205,7 +193,7 @@ const PrivacyPolicy = () => {
             10. Third-Party Services
           </h3>
           <p className="">
-            LookaLike may integrate with third-party services (such as login
+            LookAlike may integrate with third-party services (such as login
             providers or analytics tools).
           </p>
           <p className="">
@@ -220,7 +208,7 @@ const PrivacyPolicy = () => {
             Your data may be processed and stored in different countries
             depending on infrastructure and service providers.
           </p>
-          <p className="">By using LookaLike, you consent to such transfers.</p>
+          <p className="">By using LookAlike, you consent to such transfers.</p>
           {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
