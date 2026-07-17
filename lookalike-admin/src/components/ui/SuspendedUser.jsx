@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import { formatDate } from "../../utils/formatDate";
 import { FaCircleUser } from "react-icons/fa6";
 
@@ -7,7 +8,7 @@ const SuspendedUser = ({
   setReport,
   suspendedUser,
 }) => {
-  return (
+  return createPortal(
     <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-50 bg-[rgba(0,0,0,0.3)] px-4">
       <div className="w-full max-w-[471px] p-6 lg:p-6 rounded-[32px] relative overflow-hidden bg-white">
         <div className="w-full flex items-center justify-between gap-3 z-10 relative">
@@ -139,7 +140,8 @@ const SuspendedUser = ({
           className="w-[1390px] h-[646px] absolute z-0 top-[-20%] right-[0%] opacity-40"
         />
       </div>
-    </main>
+    </main>,
+    document.body,
   );
 };
 

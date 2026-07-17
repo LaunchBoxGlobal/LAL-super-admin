@@ -3,6 +3,7 @@ import { useCreateNotificationMutation } from "../../services/notificationApi";
 import { createNotificationSchema } from "../../validations/createNotificationSchema";
 import Button from "./Button";
 import { useFormik } from "formik";
+import { createPortal } from "react-dom";
 
 const SendNotificationModal = ({ toggleModal }) => {
   const [createAnnouncement, { isLoading }] = useCreateNotificationMutation();
@@ -40,8 +41,8 @@ const SendNotificationModal = ({ toggleModal }) => {
     },
   });
 
-  return (
-    <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-[10000] bg-[rgba(0,0,0,0.3)] px-4">
+  return createPortal(
+    <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-50 bg-[rgba(0,0,0,0.3)] px-4">
       <div className="w-full max-w-[471px] p-6 lg:p-8 rounded-[32px] relative overflow-hidden bg-white">
         <div className="w-full flex items-center justify-between gap-3 z-10 relative">
           <h2 className="text-[18px] lg:text-[24px] font-semibold leading-none">
@@ -150,7 +151,8 @@ const SendNotificationModal = ({ toggleModal }) => {
           className="w-[1390px] h-[646px] absolute z-0 top-[-20%] right-[0%] opacity-40"
         />
       </div>
-    </main>
+    </main>,
+    document.body,
   );
 };
 

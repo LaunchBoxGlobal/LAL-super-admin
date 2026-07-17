@@ -36,8 +36,8 @@ const DashboardLayout = ({ pages }) => {
         </div>
       </div>
 
-      <div className="w-full relative z-30 lg:w-[calc(100%-15rem)] xl:w-[calc(100%-18rem)] h-full overflow-y-auto overflow-x-hidden p-5">
-        <div className="sticky top-0 left-0 w-full h-[94px] bg-[#fff] custom-shadow flex items-center justify-between lg:justify-end px-4 z-40 rounded-[16px] lg:rounded-[24px]">
+      <div className="w-full relative z-20 lg:w-[calc(100%-15rem)] xl:w-[calc(100%-18rem)] h-full overflow-y-auto overflow-x-hidden p-5">
+        <div className="sticky top-0 left-0 w-full h-[94px] bg-[#fff] custom-shadow flex items-center justify-between lg:justify-end px-4 z-20 rounded-[16px] lg:rounded-[24px]">
           <button
             onClick={() => setisOpen((prev) => !prev)}
             className="lg:hidden block"
@@ -58,7 +58,7 @@ const DashboardLayout = ({ pages }) => {
             </div>
           </div>
         </div>
-        <div className="w-full bg-white rounded-[16px] lg:rounded-[32px] p-6 mt-6 text-black custom-shadow z-20 relative">
+        <div className="w-full bg-white rounded-[16px] lg:rounded-[32px] p-6 mt-6 text-black custom-shadow z-10 relative">
           <Outlet />
         </div>
       </div>

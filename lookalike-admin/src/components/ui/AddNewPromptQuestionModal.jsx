@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAddPromptMutation } from "../../services/promptQuery";
 import { enqueueSnackbar } from "notistack";
 import ButtonLoader from "./ButtonLoader";
+import { createPortal } from "react-dom";
 
 const AddNewPromptQuestionModal = ({ toggleModal }) => {
   const [promptQuestion, setPromptQuestion] = useState("");
@@ -48,7 +49,7 @@ const AddNewPromptQuestionModal = ({ toggleModal }) => {
     setPromptQuestion("");
     toggleModal();
   };
-  return (
+  return createPortal(
     <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-50 bg-[rgba(0,0,0,0.3)] px-4">
       <div className="w-full max-w-[471px] p-6 lg:p-8 rounded-[32px] relative overflow-hidden bg-white">
         <div className="w-full flex items-center justify-between gap-3 z-10 relative">
@@ -109,7 +110,8 @@ const AddNewPromptQuestionModal = ({ toggleModal }) => {
           className="w-[1390px] h-[646px] absolute z-0 top-[-70%] right-[-20%] opacity-40"
         />
       </div>
-    </main>
+    </main>,
+    document.body,
   );
 };
 

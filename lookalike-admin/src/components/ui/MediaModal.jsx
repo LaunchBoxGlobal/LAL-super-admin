@@ -10,9 +10,10 @@ import "./swiper.css";
 // modules
 import { Navigation, Zoom, Keyboard } from "swiper/modules";
 import { IoClose } from "react-icons/io5";
+import { createPortal } from "react-dom";
 
 const MediaModal = ({ media = [], onclose }) => {
-  return (
+  return createPortal(
     <main className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6">
       {/* Close Button */}
       <button
@@ -47,7 +48,8 @@ const MediaModal = ({ media = [], onclose }) => {
           ))}
         </Swiper>
       </div>
-    </main>
+    </main>,
+    document.body,
   );
 };
 

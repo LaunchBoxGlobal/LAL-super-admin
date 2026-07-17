@@ -72,7 +72,7 @@ const NotificationsPage = () => {
 
   if (isError) {
     return (
-      <section className="w-full relative min-h-screen">
+      <section className="w-full relative">
         <Header toggleSendModal={toggleSendModal} />
         <div className="w-full mt-10 border-radius p-4 pt-10 text-center">
           <h3 className="text-gray-600 font-semibold text-lg">

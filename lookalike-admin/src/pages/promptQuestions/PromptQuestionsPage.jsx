@@ -108,7 +108,7 @@ const PromptQuestionsPage = () => {
   }
 
   return (
-    <section className="w-full relative min-h-screen">
+    <section className="w-full relative">
       <Header toggleAddNewQuestionModal={toggleAddNewQuestionModal} />
 
       {isFetching && (

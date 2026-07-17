@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { useUpdatePromptMutation } from "../../services/promptQuery";
 import { enqueueSnackbar } from "notistack";
 import ButtonLoader from "./ButtonLoader";
+import { createPortal } from "react-dom";
 
 const EditPromptQuestionModal = ({
   toggleEditPromptModal,
@@ -70,7 +71,7 @@ const EditPromptQuestionModal = ({
     },
   });
 
-  return (
+  return createPortal(
     <main className="w-full min-h-screen flex items-center justify-center fixed inset-0 z-50 bg-[rgba(0,0,0,0.3)] px-4">
       <div
         ref={modalRef}
@@ -131,7 +132,8 @@ const EditPromptQuestionModal = ({
           </button>
         </form>
       </div>
-    </main>
+    </main>,
+    document.body,
   );
 };
 

@@ -52,7 +52,7 @@ const UsersPage = () => {
   const pagination = data?.result?.pagination;
 
   return (
-    <section className="w-full relative min-h-screen">
+    <section className="w-full relative">
       <div className="w-full flex items-center justify-between gap-3 flex-wrap">
         <h2 className="page-title">
           Users {users && users.length > 0 && `(${pagination?.total})`}
