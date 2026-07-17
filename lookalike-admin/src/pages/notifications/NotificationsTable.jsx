@@ -7,7 +7,7 @@ const NotificationsTable = ({
   setAnnouncementId,
 }) => {
   return (
-    <div className="w-full min-h-[90vh] relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2">
+    <div className="w-full relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base mt-10 custom-shadow bg-white rounded-[12px] lg:rounded-[24px] p-2">
       <table className="w-full text-sm text-left rtl:text-right text-body">
         <thead className="text-sm text-body rounded-base bg-[#408EE8]/20 rounded-[12px] lg:rounded-[24px]">
           <tr>
