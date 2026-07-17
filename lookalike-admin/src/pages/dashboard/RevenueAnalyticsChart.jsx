@@ -170,7 +170,7 @@ export default function RevenueAnalyticsChart({
   const { domain, ticks } = getYAxisConfig(maxRevenue);
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-4 md:p-8 bg-white custom-shadow rounded-[20px] mt-10">
+    <div className="w-full mx-auto p-4 md:p-8 bg-white custom-shadow rounded-[20px] mt-10">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
         <div>
