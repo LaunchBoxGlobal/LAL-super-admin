@@ -1,0 +1,119 @@
+:root {
+  --bg: #ffffff;
+  --surface: #16161d;
+  --line: #26262f;
+  --text: #f2f2f5;
+  --muted: #8e8e9b;
+  --accent: #ff4d6d;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  font-family: "Google Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+.card {
+  padding: 0 10px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+.logo {
+  width: 184px;
+  height: 184px;
+
+  margin: 0 auto 0px;
+  object-fit: contain;
+}
+h1 {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  color: black;
+  text-align: center !important;
+}
+p.sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0 0 28px;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 15px 10px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  /* border: 1px solid var(--line); */
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn.primary {
+  background: linear-gradient(46.52deg, #5e51c9 -15.16%, #408ee8 119.82%);
+  color: #fff;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+.note {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 20px;
+  line-height: 1.5;
+}
+.hidden {
+  display: none;
+}
+
+.blue-glow {
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background-color: #408ee8;
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  filter: blur(220px);
+  opacity: 40%;
+}
+
+.purple-glow {
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background-color: #5e51c9;
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  filter: blur(220px);
+  opacity: 40%;
+}
+
+.btn-icon {
+  width: 18px;
+  height: auto;
+  flex-shrink: 0;
+}
