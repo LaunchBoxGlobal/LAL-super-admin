@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get LookALike Match</title>
+<meta name="description" content="Find your celebrity lookalike in seconds. Download LookALike Match for iOS and Android.">
+
+<!-- Open Graph so the link previews correctly when pasted anywhere -->
+<meta property="og:title" content="LookALike Match">
+<meta property="og:description" content="Find your celebrity lookalike in seconds.">
+<meta property="og:image" content="https://launchboxglobal.com/lal/og.jpg">
+<meta property="og:type" content="website">
+
+<!-- Apple Smart App Banner: shows a native install strip in Safari -->
+<meta name="apple-itunes-app" content="app-id=6766226894">
+
+<style>
+  :root {
+    --bg: #0B0B0F;
+    --surface: #16161D;
+    --line: #26262F;
+    --text: #F2F2F5;
+    --muted: #8E8E9B;
+    --accent: #FF4D6D;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .card { max-width: 380px; width: 100%; }
+  .logo {
+    width: 84px; height: 84px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--line);
+    margin: 0 auto 24px; object-fit: cover;
+  }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 0 0 8px; }
+  p.sub { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  .btn {
+    display: block; width: 100%; padding: 15px 20px; margin-bottom: 12px;
+    border-radius: 12px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--text);
+    font-size: 1rem; font-weight: 600; text-decoration: none;
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
+  .note { color: var(--muted); font-size: 0.8rem; margin-top: 20px; line-height: 1.5; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<main class="card">
+  <img class="logo" src="/lal/icon.png" alt="">
+  <h1>Find your celebrity lookalike</h1>
+  <p class="sub" id="sub">Opening the store…</p>
+
+  <div id="choices" class="hidden">
+    <a class="btn primary" id="ios" href="#">Download on the App Store</a>
+    <a class="btn" id="android" href="#">Get it on Google Play</a>
+  </div>
+
+  <p class="note" id="note"></p>
+</main>
+
+<script>
+(function () {
+  // Store destinations. No /us/ on the Apple link so it auto-routes to the
+  // visitor's local storefront (PK, IN, ID, PH, BR).
+  var IOS = "https://apps.apple.com/app/id6766226894";
+  var ANDROID = "https://play.google.com/store/apps/details?id=com.launchbox.lal";
+
+  var ua = navigator.userAgent || "";
+  var isAndroid = /android/i.test(ua);
+  var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+              (/Mac/.test(ua) && navigator.maxTouchPoints > 1); // iPadOS desktop mode
+
+  // Forward campaign params so store analytics can attribute the visit.
+  var incoming = new URLSearchParams(location.search);
+
+  function build(base) {
+    var url = new URL(base);
+    if (base === ANDROID) {
+      // Play Store reads a single "referrer" string.
+      var ref = incoming.toString();
+      if (ref) url.searchParams.set("referrer", ref);
+    } else {
+      // Apple reads pt / ct / mt for campaign tracking.
+      var ct = incoming.get("utm_campaign") || incoming.get("ct");
+      if (ct) url.searchParams.set("ct", ct);
+      url.searchParams.set("mt", "8");
+    }
+    return url.toString();
+  }
+
+  var iosUrl = build(IOS);
+  var androidUrl = build(ANDROID);
+
+  document.getElementById("ios").href = iosUrl;
+  document.getElementById("android").href = androidUrl;
+
+  if (isAndroid) {
+    location.replace(androidUrl);
+  } else if (isIOS) {
+    location.replace(iosUrl);
+  } else {
+    // Desktop, or anything we cannot identify: let the visitor choose.
+    document.getElementById("sub").textContent =
+      "Available free on iOS and Android.";
+    document.getElementById("choices").classList.remove("hidden");
+    document.getElementById("note").textContent =
+      "Open this page on your phone to install directly.";
+  }
+})();
+</script>
+
+</body>
+</html>
