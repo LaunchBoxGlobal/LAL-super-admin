@@ -28,71 +28,78 @@ const AgeAndGenderChart = ({ data }) => {
       </div>
 
       <div className="w-full border my-5" />
+      {data && data?.length > 0 ? (
+        <div className="w-full px-5 pb-8 space-y-4">
+          {data?.map((c, i) => (
+            <div key={i} className="w-full">
+              {/* Header */}
+              <div className="w-full flex items-center justify-between">
+                <h4 className="text-sm font-medium text-[#888888] leading-none">
+                  {c?.ageGroup}
+                </h4>
+                <p className="text-sm text-[#888888] font-semibold">
+                  {c?.percentage}%
+                </p>
+              </div>
 
-      <div className="w-full px-5 pb-8 space-y-4">
-        {data?.map((c, i) => (
-          <div key={i} className="w-full">
-            {/* Header */}
-            <div className="w-full flex items-center justify-between">
-              <h4 className="text-sm font-medium text-[#888888] leading-none">
-                {c?.ageGroup}
-              </h4>
-              <p className="text-sm text-[#888888] font-semibold">
-                {c?.percentage}%
-              </p>
-            </div>
-
-            {/* Progress */}
-            <div className="w-full mt-1 relative">
-              {/* Gray Track — overflow-hidden removed */}
-              <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5]">
-                {/* Colored Progress */}
-                <div
-                  className="h-full flex transition-all duration-500"
-                  style={{
-                    width: `${c?.percentage}%`,
-                    minWidth: c?.percentage > 0 ? "20px" : "0px",
-                  }}
-                >
-                  {/* Female */}
+              {/* Progress */}
+              <div className="w-full mt-1 relative">
+                {/* Gray Track — overflow-hidden removed */}
+                <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5]">
+                  {/* Colored Progress */}
                   <div
-                    className={`relative h-full group cursor-pointer ${
-                      c?.maleCount === 0 ? "rounded-[4px]" : "rounded-l-[4px]"
-                    }`}
+                    className="h-full flex transition-all duration-500"
                     style={{
-                      width: `${c?.femalePercentage}%`,
-                      background: "#E0C6FD",
+                      width: `${c?.percentage}%`,
+                      minWidth: c?.percentage > 0 ? "20px" : "0px",
                     }}
                   >
-                    {c?.femaleCount > 0 && (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
-                        Female: {c?.femaleCount} users
-                      </span>
-                    )}
-                  </div>
+                    {/* Female */}
+                    <div
+                      className={`relative h-full group cursor-pointer ${
+                        c?.maleCount === 0 ? "rounded-[4px]" : "rounded-l-[4px]"
+                      }`}
+                      style={{
+                        width: `${c?.femalePercentage}%`,
+                        background: "#E0C6FD",
+                      }}
+                    >
+                      {c?.femaleCount > 0 && (
+                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
+                          Female: {c?.femaleCount} users
+                        </span>
+                      )}
+                    </div>
 
-                  {/* Male */}
-                  <div
-                    className={`relative h-full group cursor-pointer ${
-                      c?.femaleCount === 0 ? "rounded-[4px]" : "rounded-r-[4px]"
-                    }`}
-                    style={{
-                      width: `${c?.malePercentage}%`,
-                      background: "#5E51C9",
-                    }}
-                  >
-                    {c?.maleCount > 0 && (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
-                        Male: {c?.maleCount} users
-                      </span>
-                    )}
+                    {/* Male */}
+                    <div
+                      className={`relative h-full group cursor-pointer ${
+                        c?.femaleCount === 0
+                          ? "rounded-[4px]"
+                          : "rounded-r-[4px]"
+                      }`}
+                      style={{
+                        width: `${c?.malePercentage}%`,
+                        background: "#5E51C9",
+                      }}
+                    >
+                      {c?.maleCount > 0 && (
+                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition z-50">
+                          Male: {c?.maleCount} users
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="w-full px-5 py-20 space-y-4 text-center">
+          <p className="text-gray-600 font-medium">No data to show.</p>
+        </div>
+      )}
     </div>
   );
 };

@@ -106,12 +106,12 @@ export default function Hero({ handleToggleWaitlistModal }) {
             </Link>
           </div>
 
-          <div className="mb-7 w-full leading-[1.5] text-[17px] secondary-text">
+          {/* <div className="mb-7 w-full leading-[1.5] text-[17px] secondary-text">
             <p className="w-full max-w-lg text-[11px]">
               Early access. Download now to reserve your spot. Complete your
               profile today and we'll notify you the moment matching goes live.
             </p>
-          </div>
+          </div> */}
 
           <div className="flex flex-wrap justify-center md:justify-start items-center gap-6 sm:gap-10 text-sm font-medium text-slate-500">
             <div className="flex items-center gap-2 text-[#888888]">

@@ -41,46 +41,52 @@ const OccupationUsageChart = ({ data, chartType, setChartType }) => {
 
       <div className="w-full border my-5" />
 
-      <div className="w-full px-5 pb-8 space-y-4">
-        {data?.map((c, i) => {
-          return (
-            c?.percentage !== 0 && (
-              <div key={c?.country} className="w-full">
-                {/* Header */}
-                <div className="w-full flex items-center justify-between">
-                  <h4 className="text-sm font-normal text-[#888888] leading-none">
-                    {c?.occupation.charAt(0).toUpperCase() +
-                      c?.occupation?.slice(1)}
-                  </h4>
-                  <p className="text-sm text-[#5E51C9] font-semibold">
-                    {c?.percentage}%
-                  </p>
-                </div>
+      {data && data?.length > 0 ? (
+        <div className="w-full px-5 pb-8 space-y-4">
+          {data?.map((c, i) => {
+            return (
+              c?.percentage !== 0 && (
+                <div key={c?.country} className="w-full">
+                  {/* Header */}
+                  <div className="w-full flex items-center justify-between">
+                    <h4 className="text-sm font-normal text-[#888888] leading-none">
+                      {c?.occupation.charAt(0).toUpperCase() +
+                        c?.occupation?.slice(1)}
+                    </h4>
+                    <p className="text-sm text-[#5E51C9] font-semibold">
+                      {c?.percentage}%
+                    </p>
+                  </div>
 
-                {/* Bar */}
-                <div className="w-full mt-1">
-                  <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5] relative">
-                    <div
-                      className={`absolute left-0 top-1/2 -translate-y-1/2 h-[16px] rounded-[4px] group cursor-pointer`}
-                      style={{
-                        width: `${c?.percentage}%`,
-                        minWidth: "20px",
-                        background: i % 2 === 0 ? "#5E51C9" : "#E0C6FD",
-                        transition: "width 0.4s ease",
-                      }}
-                    >
-                      {/* Tooltip */}
-                      <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
-                        {c?.userCount} users
-                      </span>
+                  {/* Bar */}
+                  <div className="w-full mt-1">
+                    <div className="w-full h-[16px] rounded-[4px] bg-[#F5F5F5] relative">
+                      <div
+                        className={`absolute left-0 top-1/2 -translate-y-1/2 h-[16px] rounded-[4px] group cursor-pointer`}
+                        style={{
+                          width: `${c?.percentage}%`,
+                          minWidth: "20px",
+                          background: i % 2 === 0 ? "#5E51C9" : "#E0C6FD",
+                          transition: "width 0.4s ease",
+                        }}
+                      >
+                        {/* Tooltip */}
+                        <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">
+                          {c?.userCount} users
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          );
-        })}
-      </div>
+              )
+            );
+          })}
+        </div>
+      ) : (
+        <div className="w-full px-5 py-20 space-y-4 text-center">
+          <p className="text-gray-600 font-medium">No data to show.</p>
+        </div>
+      )}
     </div>
   );
 };

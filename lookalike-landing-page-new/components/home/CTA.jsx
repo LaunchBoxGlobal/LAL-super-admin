@@ -69,12 +69,12 @@ const CTA = ({ handleToggleWaitlistModal }) => {
               />
             </Link>
           </div>
-          <div className="mb-7 w-full leading-[1.5] text-[17px] secondary-text">
+          {/* <div className="mb-7 w-full leading-[1.5] text-[17px] secondary-text">
             <p className="w-full max-w-lg text-[11px] text-white">
               Early access. Download now to reserve your spot. Complete your
               profile today and we'll notify you the moment matching goes live.
             </p>
-          </div>
+          </div> */}
           {/* <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-12 sm:mb-10">
             <button
               type="button"

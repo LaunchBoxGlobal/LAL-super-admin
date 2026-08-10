@@ -15,7 +15,7 @@ import OccupationUsageChart from "./OccupationUsageChart";
 import ChartSkeleton from "./ChartSkeleton";
 
 const DashboardPage = () => {
-  const [chartType, setChartType] = useState("yearly");
+  const [chartType, setChartType] = useState("monthly");
   const [activeTab, setActiveTab] = useState("weekly");
 
   const admin = useMemo(() => {
