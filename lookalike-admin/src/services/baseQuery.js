@@ -54,6 +54,11 @@ export const baseQuery = async (args, api, extraOptions) => {
             variant: "error",
           },
         );
+        Cookies.remove("adminToken");
+        Cookies.remove("adminData");
+        if (typeof window !== "undefined") {
+          window.location.href = "/login";
+        }
         console.warn("Forbidden: You do not have permission.");
         break;
 
@@ -78,6 +83,11 @@ export const baseQuery = async (args, api, extraOptions) => {
             variant: "error",
           },
         );
+        Cookies.remove("adminToken");
+        Cookies.remove("adminData");
+        if (typeof window !== "undefined") {
+          window.location.href = "/login";
+        }
         console.error("Server error occurred.");
         break;
 
