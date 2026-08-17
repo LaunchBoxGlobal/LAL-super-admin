@@ -42,7 +42,6 @@ export const baseQuery = async (args, api, extraOptions) => {
             variant: "error",
           },
         );
-        console.warn("fwefew");
         break;
 
       case 403:
