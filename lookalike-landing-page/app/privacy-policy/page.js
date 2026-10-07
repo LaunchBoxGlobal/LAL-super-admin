@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
         <div className="w-full border my-5" />
 
         <div className="w-full">
-          <p className="">Last Updated: June 2, 2026</p>
+          <p className="">Last Updated: October 7, 2026</p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">1. Introduction</h3>
 
@@ -77,11 +77,15 @@ const PrivacyPolicy = () => {
             results are algorithm-based and may not be accurate.
           </p>
 
-          <h4 className="font-semibold text-base mt-2 mb-2">d. Usage Data</h4>
+          <h4 className="font-semibold text-base mt-2 mb-2">
+            d. Usage Data and Device Identifiers
+          </h4>
           <ul className="mt-2 list-disc pl-4">
             {[
               "App activity, interactions, and preferences",
               "Device type, operating system, and app performance data",
+              "Device advertising identifiers (Apple IDFA, where you have permitted tracking, and Google Advertising ID)",
+              "App events such as app installs, app launches, account registration, and subscription purchases",
             ].map((t, i) => {
               return <li key={i}>{t}</li>;
             })}
@@ -111,6 +115,7 @@ const PrivacyPolicy = () => {
               "Improve app functionality and user experience",
               "Monitor safety and prevent misuse",
               "Process subscriptions and manage access to premium features",
+              "Measure and improve the effectiveness of our advertising campaigns on third-party platforms",
             ]?.map((p, i) => {
               return <li key={i}>{p}</li>;
             })}
@@ -136,6 +141,7 @@ const PrivacyPolicy = () => {
           <ul className="mt-2 list-disc pl-4">
             {[
               "With service providers supporting app functionality (hosting, analytics)",
+              "With advertising and measurement partners, such as Meta Platforms, Inc., as described in Section 12 (Advertising and Analytics)",
               "When required by law or legal process",
               "To enforce our Terms or protect user safety",
             ]?.map((p, i) => {
@@ -193,8 +199,11 @@ const PrivacyPolicy = () => {
             10. Third-Party Services
           </h3>
           <p className="">
-            LookAlike may integrate with third-party services (such as login
-            providers or analytics tools).
+            LookAlike integrates with third-party services, including login
+            providers (Google, Apple), cloud infrastructure (Amazon Web
+            Services), app stores (Apple App Store, Google Play), push
+            notifications (Google Firebase), and advertising measurement (Meta
+            Platforms, Inc.).
           </p>
           <p className="">
             These services have their own privacy policies, and we are not
@@ -212,7 +221,58 @@ const PrivacyPolicy = () => {
           {/*  */}
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            12. Facial Data Processing and Similarity Matching
+            12. Advertising and Analytics
+          </h3>
+          <p className="">
+            LookAlike uses the Meta (Facebook) SDK, provided by Meta Platforms,
+            Inc., to measure the performance of our advertising campaigns on
+            Facebook and Instagram and to understand how users find and use our
+            app.
+          </p>
+          <p className="mt-2">
+            Through the Meta SDK, the following information may be shared with
+            Meta:
+          </p>
+          <ul className="mt-2 list-disc pl-4">
+            {[
+              "Device advertising identifiers (IDFA on iOS, only if you allow tracking, and Google Advertising ID on Android)",
+              "Device information such as device model, operating system, and app version",
+              "App events such as app installs, app launches, completed registrations, and subscription purchases, including price and currency",
+              "An internal account identifier that does not contain your name, email, or other contact details",
+            ]?.map((p, i) => {
+              return <li key={i}>{p}</li>;
+            })}
+          </ul>
+          <p className="mt-2">
+            We do not share the following with Meta or any advertising partner:
+            your photos, facial data, facial similarity results, messages,
+            profile details, name, email address, or precise location.
+          </p>
+          <p className="mt-2">
+            Meta processes this information in accordance with its own Privacy
+            Policy, available at{" "}
+            <Link
+              href="https://www.facebook.com/privacy/policy"
+              target="_blank"
+              className="hover:text-blue-600 hover:underline transition-all duration-100"
+            >
+              https://www.facebook.com/privacy/policy
+            </Link>
+            .
+          </p>
+          <p className="mt-2 font-medium">Your choices</p>
+          <ul className="mt-2 list-disc pl-4">
+            {[
+              "iOS: we will ask for your permission before tracking. You can change this at any time in Settings > Privacy & Security > Tracking.",
+              "Android: you can reset or delete your advertising ID in Settings > Google > Ads (or Settings > Privacy > Ads on some devices).",
+              "Meta: you can manage how Meta uses information from apps and websites in your Facebook or Instagram account under Settings > Accounts Center > Your information and permissions > Your activity off Meta technologies.",
+            ]?.map((p, i) => {
+              return <li key={i}>{p}</li>;
+            })}
+          </ul>
+
+          <h3 className="font-semibold text-xl mt-4 mb-2">
+            13. Facial Data Processing and Similarity Matching
           </h3>
           <p className="">
             LookALike provides facial similarity matching features that allow
@@ -221,7 +281,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            13. Facial Data Collection
+            14. Facial Data Collection
           </h3>
           <p className="">
             When you upload a profile photo, the image may contain facial
@@ -232,7 +292,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            14. How Facial Data Is Used
+            15. How Facial Data Is Used
           </h3>
           <p className="">Facial data is used exclusively to:</p>
           <ul className="mt-2 list-disc pl-4">
@@ -250,7 +310,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            15. Storage and Security
+            16. Facial Data Processing
           </h3>
           <p className="">
             To provide facial similarity comparison functionality, uploaded
@@ -265,7 +325,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            16. How Facial Data Is Used
+            17. Storage and Security
           </h3>
           <p className="">
             Uploaded profile photos are securely stored using Amazon Web
@@ -275,7 +335,7 @@ const PrivacyPolicy = () => {
           </p>
 
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            17. Retention and Deletion
+            18. Retention and Deletion
           </h3>
           <p className="">
             Uploaded profile photos are retained only while the associated user
@@ -289,7 +349,7 @@ const PrivacyPolicy = () => {
 
           {/*  */}
           <h3 className="font-semibold text-xl mt-4 mb-2">
-            18. Changes to This Privacy Policy
+            19. Changes to This Privacy Policy
           </h3>
           <p className="">
             We may update this Privacy Policy from time to time.
@@ -299,7 +359,7 @@ const PrivacyPolicy = () => {
             revised policy.
           </p>
 
-          <h3 className="font-semibold text-xl mt-4 mb-2">19. Contact Us</h3>
+          <h3 className="font-semibold text-xl mt-4 mb-2">20. Contact Us</h3>
           <p className="">
             If you have any questions about this Privacy Policy, please contact
             us:
