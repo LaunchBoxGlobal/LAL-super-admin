@@ -26,8 +26,8 @@ export const baseQuery = async (args, api, extraOptions) => {
         enqueueSnackbar("Session expired. Please log in again.", {
           variant: "error",
         });
-        Cookies.remove("adminToken");
-        Cookies.remove("adminData");
+        Cookies.remove("look_alike_admin_token");
+        Cookies.remove("look_alike_admin");
         if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
@@ -53,8 +53,8 @@ export const baseQuery = async (args, api, extraOptions) => {
             variant: "error",
           },
         );
-        Cookies.remove("adminToken");
-        Cookies.remove("adminData");
+        Cookies.remove("look_alike_admin_token");
+        Cookies.remove("look_alike_admin");
         if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
@@ -82,8 +82,8 @@ export const baseQuery = async (args, api, extraOptions) => {
             variant: "error",
           },
         );
-        Cookies.remove("adminToken");
-        Cookies.remove("adminData");
+        Cookies.remove("look_alike_admin_token");
+        Cookies.remove("look_alike_admin");
         if (typeof window !== "undefined") {
           window.location.href = "/login";
         }
